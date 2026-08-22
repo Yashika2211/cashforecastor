@@ -1,0 +1,446 @@
+[
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-07-24",
+    "reason": "Wide prediction band: P90-P10 = 79,819 (59% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.628
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-07-25",
+    "reason": "Wide prediction band: P90-P10 = 81,597 (56% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.642
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 78,968 (54% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.65
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 77,459 (53% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.653
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-08-02",
+    "reason": "Wide prediction band: P90-P10 = 79,577 (51% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.662
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 84,557 (62% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.618
+  },
+  {
+    "merchant_id": "mcht_d2c_01",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 72,584 (52% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.658
+  },
+  {
+    "merchant_id": "mcht_d2c_02",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 233,433 (55% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.645
+  },
+  {
+    "merchant_id": "mcht_d2c_02",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 301,141 (57% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.637
+  },
+  {
+    "merchant_id": "mcht_d2c_02",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 251,480 (56% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.642
+  },
+  {
+    "merchant_id": "mcht_d2c_02",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 230,644 (53% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.655
+  },
+  {
+    "merchant_id": "mcht_d2c_03",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 188,862 (55% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.645
+  },
+  {
+    "merchant_id": "mcht_d2c_03",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 188,406 (56% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.642
+  },
+  {
+    "merchant_id": "mcht_d2c_03",
+    "flag_date": "2026-07-31",
+    "reason": "Wide prediction band: P90-P10 = 200,275 (62% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.615
+  },
+  {
+    "merchant_id": "mcht_d2c_03",
+    "flag_date": "2026-08-03",
+    "reason": "Wide prediction band: P90-P10 = 245,598 (56% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.64
+  },
+  {
+    "merchant_id": "mcht_d2c_03",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 185,248 (52% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.658
+  },
+  {
+    "merchant_id": "mcht_d2c_04",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 46,183 (50% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.665
+  },
+  {
+    "merchant_id": "mcht_food_03",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 115,808 (51% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.662
+  },
+  {
+    "merchant_id": "mcht_food_03",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 211,182 (89% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.529
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-07-24",
+    "reason": "Wide prediction band: P90-P10 = 251,652 (60% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.627
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 261,393 (55% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.644
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 225,106 (55% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.646
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 270,220 (71% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.585
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-07-31",
+    "reason": "Wide prediction band: P90-P10 = 288,777 (79% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.56
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 286,197 (84% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.543
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-02",
+    "reason": "Wide prediction band: P90-P10 = 322,233 (84% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.543
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-03",
+    "reason": "Wide prediction band: P90-P10 = 312,195 (70% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.588
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 284,796 (63% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.612
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 310,452 (80% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.556
+  },
+  {
+    "merchant_id": "mcht_mkt_01",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 318,380 (85% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.541
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-24",
+    "reason": "Wide prediction band: P90-P10 = 334,141 (77% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.566
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-25",
+    "reason": "Wide prediction band: P90-P10 = 302,798 (73% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.578
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-26",
+    "reason": "Wide prediction band: P90-P10 = 265,202 (64% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.61
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-27",
+    "reason": "Wide prediction band: P90-P10 = 314,220 (73% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.578
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 269,105 (56% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.641
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 334,984 (78% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.561
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 342,737 (104% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.489
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-07-31",
+    "reason": "Wide prediction band: P90-P10 = 239,711 (66% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.602
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 275,192 (68% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.597
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-02",
+    "reason": "Wide prediction band: P90-P10 = 287,465 (74% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.576
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-03",
+    "reason": "Wide prediction band: P90-P10 = 293,808 (69% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.591
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 278,455 (62% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.618
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 282,907 (73% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.577
+  },
+  {
+    "merchant_id": "mcht_mkt_02",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 338,862 (94% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.517
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-24",
+    "reason": "Wide prediction band: P90-P10 = 731,033 (66% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.603
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-25",
+    "reason": "Wide prediction band: P90-P10 = 780,286 (80% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.555
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-26",
+    "reason": "Wide prediction band: P90-P10 = 713,945 (67% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.6
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-27",
+    "reason": "Wide prediction band: P90-P10 = 684,776 (66% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.602
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 691,326 (67% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.598
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 774,987 (74% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.574
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 805,703 (83% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.548
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-07-31",
+    "reason": "Wide prediction band: P90-P10 = 789,333 (79% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.557
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 834,599 (97% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.507
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-02",
+    "reason": "Wide prediction band: P90-P10 = 760,822 (72% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.582
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-03",
+    "reason": "Wide prediction band: P90-P10 = 714,928 (71% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.584
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 718,413 (71% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.585
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 742,632 (76% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.57
+  },
+  {
+    "merchant_id": "mcht_mkt_03",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 752,998 (76% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.57
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-24",
+    "reason": "Wide prediction band: P90-P10 = 340,839 (86% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.538
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-25",
+    "reason": "Wide prediction band: P90-P10 = 244,182 (66% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.602
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-26",
+    "reason": "Wide prediction band: P90-P10 = 258,503 (71% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.586
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-27",
+    "reason": "Wide prediction band: P90-P10 = 303,014 (70% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.588
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 325,808 (82% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.549
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 305,624 (83% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.547
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-30",
+    "reason": "Wide prediction band: P90-P10 = 311,400 (72% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.581
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-07-31",
+    "reason": "Wide prediction band: P90-P10 = 273,485 (73% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.577
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-01",
+    "reason": "Wide prediction band: P90-P10 = 272,302 (72% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.582
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-02",
+    "reason": "Wide prediction band: P90-P10 = 247,312 (64% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.611
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-03",
+    "reason": "Wide prediction band: P90-P10 = 291,664 (72% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.58
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-04",
+    "reason": "Wide prediction band: P90-P10 = 257,212 (62% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.617
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-05",
+    "reason": "Wide prediction band: P90-P10 = 301,378 (80% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.554
+  },
+  {
+    "merchant_id": "mcht_mkt_04",
+    "flag_date": "2026-08-06",
+    "reason": "Wide prediction band: P90-P10 = 307,996 (81% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.554
+  },
+  {
+    "merchant_id": "mcht_d2c_05",
+    "flag_date": "2026-07-29",
+    "reason": "Wide prediction band: P90-P10 = 34,012 (52% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.657
+  },
+  {
+    "merchant_id": "mcht_food_04",
+    "flag_date": "2026-07-28",
+    "reason": "Wide prediction band: P90-P10 = 32,320 (52% of |P50|). Model uncertainty is elevated for this day.",
+    "confidence_score": 0.657
+  }
+]

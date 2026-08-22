@@ -1,0 +1,58 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+.venv/
+venv/
+env/
+
+.env
+.env.*
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+*.db
+*.sqlite
+*.sqlite3
+
+.DS_Store
+.idea/
+.vscode/
+
+# keep synthetic ledger in repo so the app works out of the box
+# data/*.csv   <-- intentionally not ignored
+data/*.parquet
+
+# trained model weights (large binary files; regenerate with train_and_backtest.py)
+models/
+*.pkl
+*.joblib
+
+# frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+
+# reports are committed (backtest numbers, exceptions)
+# reports/   <-- intentionally not ignored

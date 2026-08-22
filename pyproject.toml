@@ -1,0 +1,21 @@
+[project]
+name = "merchant-cashflow-forecast"
+version = "0.1.0"
+description = "Merchant cash-flow forecasting pipeline"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "lightgbm",
+    "fastapi",
+    "python-multipart",
+    "uvicorn[standard]",
+    "sqlalchemy",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["src*", "data*"]
