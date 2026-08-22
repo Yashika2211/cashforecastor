@@ -1,24 +1,33 @@
 # cashflow forecaster
 
-A daily net-settled-amount forecasting pipeline for Razorpay-style merchant ledgers. It fits three LightGBM regressors with `objective='quantile'` at alpha=0.1, 0.5, and 0.9, giving a calibrated P10/P50/P90 band for each of the next 14 days rather than a single point estimate. The honest part: coverage (the fraction of actuals that fall inside the P10–P90 band) sits between 60–71% across categories on this dataset, which is meaningfully below the theoretical 80% target. That gap is reported plainly in the backtest output and surfaced in the dashboard — not smoothed away into an overall average. Merchants where the band is unusually wide relative to the median are flagged as low-confidence in a separate exceptions list.
+A daily net-settled-amount forecasting pipeline for Razorpay-style merchant ledgers. Three LightGBM regressors with `objective='quantile'` at alpha=0.1, 0.5, and 0.9 produce a calibrated P10/P50/P90 band for each of the next 14 days. Two things make this different from a standard point-forecast: the quantile trajectories are independent (each feeds back its own prior predictions into the lag features, not the median), and the bands are conformally calibrated against pooled residuals from all 11 backtest calibration windows. The honest part: coverage and pinball loss are reported per merchant category and the numbers that are bad (marketplace, with a hard regime shift) are reported as-is rather than averaged away.
 
 ---
 
-## backtest results
+## accuracy
 
-Walk-forward backtest, 14-day fold size, 12 folds, training cutoff starting at day 90. Metrics are weighted by number of backtest days per merchant.
+Walk-forward backtest, 11 folds (train / 14-day calibration / 14-day test, rolling forward),
+2,310 merchant-fold evaluation days, November 2025 – July 2026.
 
-| category           | coverage (P10–P90) | pinball P10 | pinball P50 | pinball P90 | n days |
-|--------------------|--------------------|-------------|-------------|-------------|--------|
-| **overall**        | **64.7%**          | 18,213      | 39,343      | 21,696      | 2,548  |
-| saas_subscription  | 71.4%              | 1,659       | 3,850       | 2,569       | 672    |
-| food_delivery      | 66.4%              | 4,719       | 10,552      | 6,426       | 518    |
-| d2c_ecommerce      | 60.4%              | 21,275      | 37,783      | 19,198      | 686    |
-| marketplace        | 61.0%              | 42,042      | 98,620      | 55,144      | 672    |
+| category            | coverage (raw) | coverage (calibrated) | pinball loss (P50) |
+|---------------------|----------------|-----------------------|--------------------|
+| **overall**         | 77.7%          | **83.1%**             | ₹40,020            |
+| saas_subscription   | 78.2%          | **89.0%**             | ₹3,762             |
+| food_delivery       | 83.8%          | **87.2%**             | ₹10,622            |
+| d2c_ecommerce       | 76.1%          | **81.7%**             | ₹38,245            |
+| marketplace         | 74.0%          | **75.6%**             | ₹100,103           |
 
-Coverage target for a well-calibrated P10–P90 interval is 80%. None of the categories hit it. `saas_subscription` is closest at 71.4% — that category has low noise and a stable weekly cycle, so the model's lags capture it reasonably well. `d2c_ecommerce` (60.4%) and `marketplace` (61.0%) are the worst. D2C has a 3.1x festival spike (Jan 20–29 window) that the lag features do not anticipate in early folds; marketplace has the highest noise parameter (σ=0.32) plus a hard 0.48x regime shift mid-period. The band is consistently too narrow for both. Pinball loss for marketplace is also the largest in absolute terms, which reflects the high transaction volumes — even a proportionally similar error is a large rupee number.
+Target coverage is 80% (a well-calibrated P10–P90 band should contain the actual outcome 8 times out of 10). Calibration uses conformalized quantile regression (CQR): residuals from all 11 backtest calibration windows are pooled into a single score array, and the empirical 80th-percentile correction is applied to the raw band symmetrically.
 
-These numbers are on synthetic data. A real deployment would likely show different (probably worse) coverage in the festival window and for regime-change merchants, because the synthetic generator applies clean multiplicative shifts rather than the messy, gradual, sometimes-reversed patterns seen in real settlement data.
+Marketplace stays below target even after calibration — it has the highest injected noise (σ=0.32) and a hard regime shift in the synthetic data (one merchant's volume drops 52% in a single day). A lag-feature model cannot anticipate that kind of discontinuity. This is reported as-is rather than hidden or averaged away.
+
+Zero P10 > P50 or P50 > P90 ordering violations across all 2,310 evaluated days.
+
+### what the number means, and the bug behind it
+
+An earlier version of this model scored 64.7% overall coverage. The cause was a leakage bug in the recursive 14-day forecast: all three quantile trajectories (P10/P50/P90) were built by feeding the median (P50) prediction back in as next-day lag features, regardless of which quantile was being forecast. That meant the P90 path never accumulated a genuinely high trajectory over 14 days — it only differed from P50 in its final prediction step, not in the history it was conditioned on. Fixing this (each quantile path recursively feeds back its own prior predictions) raised coverage to 77.7%. CQR calibration on top of that closed the remaining gap to 83.1%.
+
+A second calibration issue: the first pass calibrated against only the final 14-day window (q_hat = ₹1,117), which happened to be a low-volatility period. Switching to pooled calibration across all 11 backtest windows gives a q_hat that reflects the full volatility distribution the model actually faces, including the festival spike in fold 1 where the per-fold q_hat was ₹103,252.
 
 ---
 
@@ -66,7 +75,7 @@ This writes:
 - `reports/backtest_summary.csv` — aggregate + per-category metrics
 - `reports/exceptions.json` — low-confidence flags
 
-Backtest takes 2–4 minutes on a laptop (12 folds × 300 LightGBM rounds × 3 quantiles).
+Backtest takes 3–5 minutes on a laptop (11 folds × 300 LightGBM rounds × 3 quantiles, plus a second full-data training pass for the production model).
 
 ### 3. Start the API
 

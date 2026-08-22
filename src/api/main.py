@@ -96,10 +96,14 @@ class ForecastResponse(BaseModel):
 
 class BacktestRow(BaseModel):
     merchant_category: str
-    pinball_p10: float
-    pinball_p50: float
-    pinball_p90: float
-    coverage_p10_p90: float
+    # Raw = leakage-fixed trajectories, no CQR
+    raw_coverage: Optional[float] = None
+    # Calibrated = leakage-fixed + CQR; this is the primary coverage number
+    coverage_p10_p90: float          # alias for cal_coverage — what the frontend shows
+    pinball_p10: float               # calibrated pinball (cal_pinball_p10)
+    pinball_p50: float               # calibrated pinball (cal_pinball_p50)
+    pinball_p90: float               # calibrated pinball (cal_pinball_p90)
+    mean_q_hat: Optional[float] = None
     n_days_total: Optional[int] = None
 
 
@@ -206,16 +210,33 @@ def get_backtest_metrics() -> List[BacktestRow]:
             detail="Backtest results not found. Run the training script first.",
         )
     df = pd.read_csv(summary_path)
+
+    # The summary CSV uses prefixed column names (raw_/cal_) from the v2 backtest.
+    # Map them to the stable BacktestRow schema so the frontend needs no changes.
+    def _col(df: pd.DataFrame, *candidates: str) -> pd.Series:
+        """Return the first column that exists, or a series of NaN."""
+        for c in candidates:
+            if c in df.columns:
+                return df[c]
+        return pd.Series([float("nan")] * len(df))
+
     return [
         BacktestRow(
             merchant_category=str(row.merchant_category),
-            pinball_p10=float(row.pinball_p10),
-            pinball_p50=float(row.pinball_p50),
-            pinball_p90=float(row.pinball_p90),
-            coverage_p10_p90=float(row.coverage_p10_p90),
-            n_days_total=int(row.n_days_total) if pd.notna(row.n_days_total) else None,
+            raw_coverage=float(_col(df, "raw_coverage").iloc[i])
+                if "raw_coverage" in df.columns else None,
+            coverage_p10_p90=float(
+                _col(df, "cal_coverage", "coverage_p10_p90").iloc[i]
+            ),
+            pinball_p10=float(_col(df, "cal_pinball_p10", "pinball_p10").iloc[i]),
+            pinball_p50=float(_col(df, "cal_pinball_p50", "pinball_p50").iloc[i]),
+            pinball_p90=float(_col(df, "cal_pinball_p90", "pinball_p90").iloc[i]),
+            mean_q_hat=float(_col(df, "mean_q_hat").iloc[i])
+                if "mean_q_hat" in df.columns else None,
+            n_days_total=int(row.n_days_total)
+                if pd.notna(row.n_days_total) else None,
         )
-        for row in df.itertuples(index=False)
+        for i, row in enumerate(df.itertuples(index=False))
     ]
 
 
