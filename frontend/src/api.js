@@ -1,4 +1,8 @@
-const BASE = '/api'
+// In production (Vercel), VITE_API_BASE_URL is set to the Render backend URL.
+// In local dev it's unset, so the Vite proxy at /api -> localhost:8000 is used.
+const BASE = import.meta.env.VITE_API_BASE_URL
+  ? `${import.meta.env.VITE_API_BASE_URL}`
+  : '/api'
 
 async function get(path) {
   const res = await fetch(`${BASE}${path}`)

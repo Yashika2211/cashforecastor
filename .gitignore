@@ -45,9 +45,9 @@ htmlcov/
 # data/*.csv   <-- intentionally not ignored
 data/*.parquet
 
-# trained model weights (large binary files; regenerate with train_and_backtest.py)
-models/
-*.pkl
+# trained model weights — included in repo so Render can load them at startup
+# to regenerate: python train_and_backtest.py
+# models/     <-- intentionally not ignored
 *.joblib
 
 # frontend build artifacts
