@@ -1,5 +1,10 @@
 # cashflow forecaster
 
+**Live demo:** https://cashforecastor.vercel.app
+**API:** https://cashforecastor.onrender.com/docs
+
+> Note: the backend runs on Render's free tier and spins down after 15 minutes of inactivity. The first request after a period of no traffic takes 30–50 seconds to respond — this is expected, not a bug.
+
 A daily net-settled-amount forecasting pipeline for Razorpay-style merchant ledgers. Three LightGBM regressors with `objective='quantile'` at alpha=0.1, 0.5, and 0.9 produce a calibrated P10/P50/P90 band for each of the next 14 days. Two things make this different from a standard point-forecast: the quantile trajectories are independent (each feeds back its own prior predictions into the lag features, not the median), and the bands are conformally calibrated against pooled residuals from all 11 backtest calibration windows. The honest part: coverage and pinball loss are reported per merchant category and the numbers that are bad (marketplace, with a hard regime shift) are reported as-is rather than averaged away.
 
 ---
