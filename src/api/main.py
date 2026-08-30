@@ -296,7 +296,31 @@ def get_history(
     }
 
 
-@app.post("/train", response_model=TrainResponse)
+@app.get("/backtest-folds")
+def get_backtest_folds() -> List[Dict[str, Any]]:
+    """Per-fold coverage and q_hat for the fold reliability strip."""
+    results_path = REPORTS_DIR / "backtest_results.csv"
+    if not results_path.exists():
+        raise HTTPException(status_code=404, detail="Backtest results not found.")
+    df = pd.read_csv(results_path)
+    fold_summary = (
+        df.groupby(["fold", "cutoff_date"])
+        .agg(cal_coverage=("cal_coverage", "mean"), q_hat=("q_hat", "mean"), n_days=("n_days", "sum"))
+        .reset_index()
+    )
+    return [
+        {
+            "fold": int(r.fold),
+            "cutoff_date": str(r.cutoff_date),
+            "coverage": round(float(r.cal_coverage), 4),
+            "q_hat": round(float(r.q_hat), 0),
+            "n_days": int(r.n_days),
+        }
+        for r in fold_summary.itertuples(index=False)
+    ]
+
+
+
 def train_models(ledger_path: Optional[str] = None) -> TrainResponse:
     """
     Re-train models from the default (or supplied) ledger CSV.
