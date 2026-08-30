@@ -98,11 +98,13 @@ class BacktestRow(BaseModel):
     merchant_category: str
     # Raw = leakage-fixed trajectories, no CQR
     raw_coverage: Optional[float] = None
-    # Calibrated = leakage-fixed + CQR; this is the primary coverage number
-    coverage_p10_p90: float          # alias for cal_coverage — what the frontend shows
-    pinball_p10: float               # calibrated pinball (cal_pinball_p10)
-    pinball_p50: float               # calibrated pinball (cal_pinball_p50)
-    pinball_p90: float               # calibrated pinball (cal_pinball_p90)
+    # Global CQR = one q_hat pooled across all categories
+    global_coverage: Optional[float] = None
+    # Per-category CQR = separate q_hat per category; primary number shown in dashboard
+    coverage_p10_p90: float          # alias for percat_coverage (frontend reads this)
+    pinball_p10: float               # per-category calibrated pinball
+    pinball_p50: float
+    pinball_p90: float
     mean_q_hat: Optional[float] = None
     n_days_total: Optional[int] = None
 
@@ -225,12 +227,15 @@ def get_backtest_metrics() -> List[BacktestRow]:
             merchant_category=str(row.merchant_category),
             raw_coverage=float(_col(df, "raw_coverage").iloc[i])
                 if "raw_coverage" in df.columns else None,
+            global_coverage=float(_col(df, "cal_coverage").iloc[i])
+                if "cal_coverage" in df.columns else None,
+            # Per-category CQR is the primary number; fall back through global then raw
             coverage_p10_p90=float(
-                _col(df, "cal_coverage", "coverage_p10_p90").iloc[i]
+                _col(df, "percat_coverage", "cal_coverage", "coverage_p10_p90").iloc[i]
             ),
-            pinball_p10=float(_col(df, "cal_pinball_p10", "pinball_p10").iloc[i]),
-            pinball_p50=float(_col(df, "cal_pinball_p50", "pinball_p50").iloc[i]),
-            pinball_p90=float(_col(df, "cal_pinball_p90", "pinball_p90").iloc[i]),
+            pinball_p10=float(_col(df, "percat_pinball_p10", "cal_pinball_p10", "pinball_p10").iloc[i]),
+            pinball_p50=float(_col(df, "percat_pinball_p50", "cal_pinball_p50", "pinball_p50").iloc[i]),
+            pinball_p90=float(_col(df, "percat_pinball_p90", "cal_pinball_p90", "pinball_p90").iloc[i]),
             mean_q_hat=float(_col(df, "mean_q_hat").iloc[i])
                 if "mean_q_hat" in df.columns else None,
             n_days_total=int(row.n_days_total)

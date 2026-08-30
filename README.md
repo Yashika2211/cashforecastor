@@ -14,25 +14,35 @@ A daily net-settled-amount forecasting pipeline for Razorpay-style merchant ledg
 Walk-forward backtest, 11 folds (train / 14-day calibration / 14-day test, rolling forward),
 2,310 merchant-fold evaluation days, November 2025 – July 2026.
 
-| category            | coverage (raw) | coverage (calibrated) | pinball loss (P50) |
-|---------------------|----------------|-----------------------|--------------------|
-| **overall**         | 77.7%          | **83.1%**             | ₹40,020            |
-| saas_subscription   | 78.2%          | **89.0%**             | ₹3,762             |
-| food_delivery       | 83.8%          | **87.2%**             | ₹10,622            |
-| d2c_ecommerce       | 76.1%          | **81.7%**             | ₹38,245            |
-| marketplace         | 74.0%          | **75.6%**             | ₹100,103           |
+| category            | coverage (raw) | coverage (global CQR) | coverage (per-category CQR) | pinball loss (P50) |
+|---------------------|----------------|------------------------|------------------------------|---------------------|
+| **overall**         | 77.7%          | 83.1%                  | **84.1%**                    | ₹40,020             |
+| saas_subscription   | 78.2%          | 89.0%                  | **84.1%**                    | ₹3,762              |
+| food_delivery       | 83.8%          | 87.2%                  | **84.9%**                    | ₹10,622             |
+| d2c_ecommerce       | 76.1%          | 81.7%                  | **84.4%**                    | ₹38,245             |
+| marketplace         | 74.0%          | 75.6%                  | **83.3%**                    | ₹100,103            |
 
-Target coverage is 80% (a well-calibrated P10–P90 band should contain the actual outcome 8 times out of 10). Calibration uses conformalized quantile regression (CQR): residuals from all 11 backtest calibration windows are pooled into a single score array, and the empirical 80th-percentile correction is applied to the raw band symmetrically.
+Target coverage is 80%. Three calibration approaches are compared on the same 2,310 evaluation days:
 
-Marketplace stays below target even after calibration — it has the highest injected noise (σ=0.32) and a hard regime shift in the synthetic data (one merchant's volume drops 52% in a single day). A lag-feature model cannot anticipate that kind of discontinuity. This is reported as-is rather than hidden or averaged away.
+**Raw** — leakage-fixed quantile trajectories with no post-hoc correction.
 
-Zero P10 > P50 or P50 > P90 ordering violations across all 2,310 evaluated days.
+**Global CQR** — conformalized quantile regression with one correction applied uniformly across all categories. Residuals from all 11 calibration windows are pooled into a single score array; q_hat = empirical 80th-percentile of those scores (q_hat = −355, meaning the final model trained on full data was already slightly over-covering and needed a marginal band contraction).
 
-### what the number means, and the bug behind it
+**Per-category CQR** — separate q_hat per merchant category, pooled the same way. Production values: marketplace +9,023 (band expanded), d2c_ecommerce +1,058, saas_subscription −704, food_delivery −2,454 (bands contracted for the stable categories). The per-fold q_hats for marketplace ranged 6,388–103,934 across the 11 folds — the fold-1 spike aligns with the festival window — confirming the correction is responding to actual volatility rather than noise.
 
-An earlier version of this model scored 64.7% overall coverage. The cause was a leakage bug in the recursive 14-day forecast: all three quantile trajectories (P10/P50/P90) were built by feeding the median (P50) prediction back in as next-day lag features, regardless of which quantile was being forecast. That meant the P90 path never accumulated a genuinely high trajectory over 14 days — it only differed from P50 in its final prediction step, not in the history it was conditioned on. Fixing this (each quantile path recursively feeds back its own prior predictions) raised coverage to 77.7%. CQR calibration on top of that closed the remaining gap to 83.1%.
+The direction of each change is correct: marketplace needed expansion (it was genuinely under-covered at 75.6%), while saas and food needed contraction (they were over-covered at 89% and 87%, with unnecessarily wide bands). No fold triggered the minimum-scores fallback — all four categories had calibration data in every fold.
 
-A second calibration issue: the first pass calibrated against only the final 14-day window (q_hat = ₹1,117), which happened to be a low-volatility period. Switching to pooled calibration across all 11 backtest windows gives a q_hat that reflects the full volatility distribution the model actually faces, including the festival spike in fold 1 where the per-fold q_hat was ₹103,252.
+Zero P10 > P50 or P90 ordering violations across all 2,310 evaluated days.
+
+### what the numbers mean, and the bugs behind them
+
+The model went through three measurable coverage improvements, each from a specific diagnosed cause:
+
+**64.7% → 77.7%: recursive leakage fix.** All three quantile trajectories (P10/P50/P90) were built by feeding the median (P50) prediction back into lag features, regardless of which quantile was being forecast. The P90 path never accumulated a genuinely high trajectory over 14 days — it only differed from P50 in its final prediction step. Fixed by running each quantile path independently, feeding its own prior predictions back as lag fills. The band now fans open over the horizon instead of being three near-parallel shifted lines.
+
+**77.7% → 83.1%: pooled global CQR.** Even with correct trajectories, the first calibration pass used only the last 14-day window (q_hat = ₹1,117, a low-volatility period). Switching to residuals pooled across all 11 calibration windows gave a q_hat reflecting the full volatility distribution, including the festival-spike fold where the per-fold q_hat was ₹103,252.
+
+**83.1% → 84.1%: per-category CQR.** A single global q_hat applied uniformly was under-serving marketplace (high noise, needed band expansion) and over-correcting saas/food (stable categories, bands already wide). Separate q_hats per category fixed this: marketplace expanded (+9,023), d2c slightly expanded (+1,058), saas and food contracted (−704 and −2,454). After each fix, a systematic check verified the new implementation inherited the pooling-across-folds structure correctly rather than silently falling back to a single window.
 
 ---
 

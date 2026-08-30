@@ -34,7 +34,7 @@ export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid var(--border)' }}>
-              {['category', 'raw', 'cal', 'pb P50', 'pb P10', 'pb P90', 'n'].map((h, i) => (
+              {['category', 'raw', 'global', 'per-cat', 'pb P50', 'pb P10', 'pb P90', 'n'].map((h, i) => (
                 <th key={h} style={thStyle(i === 0 ? 'left' : 'right')}>{h}</th>
               ))}
             </tr>
@@ -51,6 +51,7 @@ export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError
                     {LABELS[row.merchant_category] || row.merchant_category}
                   </td>
                   <td style={tdStyle('right', 'var(--muted)')}>{pct(row.raw_coverage)}</td>
+                  <td style={tdStyle('right', 'var(--muted)')}>{pct(row.global_coverage)}</td>
                   <td style={tdStyle('right', covColor(row.coverage_p10_p90))}>
                     <strong>{pct(row.coverage_p10_p90)}</strong>
                   </td>
@@ -70,7 +71,7 @@ export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError
       )}
 
       <div style={{ marginTop: '8px', color: 'var(--muted)', fontSize: '10px', lineHeight: '1.8', fontFamily: 'var(--font-ui)' }}>
-        target 80% · cal = leakage-fixed + CQR · pinball in ₹
+        target 80% · raw = no CQR · global = one q_hat all categories · per-cat = separate q_hat per category · pinball in ₹
       </div>
     </div>
   )
