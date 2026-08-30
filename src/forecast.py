@@ -155,14 +155,16 @@ class QuantileForecaster:
     """
     Three LightGBM quantile models (P10, P50, P90) with:
     - Per-quantile recursive trajectories (leakage fix)
-    - Optional CQR calibration offset (q_hat)
+    - Optional CQR calibration: global q_hat and/or per-category q_hat
     """
 
     models: Dict[float, lgb.Booster] = field(default_factory=dict)
     daily_history: pd.DataFrame = field(default_factory=pd.DataFrame)
     feature_names: List[str] = field(default_factory=lambda: list(FEATURE_COLUMNS))
-    # CQR correction — set after calibration; None means no correction applied
+    # Global CQR correction — pooled across all categories, used as fallback
     cqr_q_hat: Optional[float] = None
+    # Per-category CQR corrections — takes precedence over global when available
+    cqr_q_hat_by_category: Dict[str, float] = field(default_factory=dict)
 
     # ------------------------------------------------------------------
     # Training
@@ -257,16 +259,72 @@ class QuantileForecaster:
         calibration window). Does NOT set cqr_q_hat — use calibrate() or
         calibrate_from_scores() for that.
         """
+        scored = self._score_cal_ledger(cal_ledger)
+        if not scored:
+            return np.array([])
+        return np.concatenate([v for v in scored.values()])
+
+    def collect_calibration_scores_by_category(
+        self,
+        cal_ledger: pd.DataFrame,
+    ) -> Dict[str, np.ndarray]:
+        """
+        Like collect_calibration_scores but groups scores by merchant_category.
+
+        Returns {category: 1-D score array}. Used by the per-category
+        calibration path in train_and_backtest.py.
+        """
+        return self._score_cal_ledger(cal_ledger)
+
+    def calibrate_per_category(
+        self,
+        scores_by_category: Dict[str, np.ndarray],
+        target_coverage: float = 0.80,
+        min_scores: int = 50,
+    ) -> Dict[str, float]:
+        """
+        Compute a separate q_hat for each category and store on
+        self.cqr_q_hat_by_category.
+
+        Categories with fewer than min_scores calibration points are flagged
+        and fall back to self.cqr_q_hat (the global value). This is printed
+        as a warning so the caller knows the estimate is unreliable.
+
+        Returns the full {category: q_hat} dict (including fallbacks) so
+        callers can log it.
+        """
+        result: Dict[str, float] = {}
+        for cat, scores in scores_by_category.items():
+            n = len(scores)
+            if n < min_scores:
+                fallback = self.cqr_q_hat if self.cqr_q_hat is not None else 0.0
+                print(
+                    f"  WARNING: category '{cat}' has only {n} calibration scores "
+                    f"(< {min_scores} minimum). Per-category q_hat is unreliable — "
+                    f"falling back to global q_hat={fallback:,.0f}"
+                )
+                result[cat] = fallback
+            else:
+                result[cat] = compute_cqr_correction_from_scores(scores, target_coverage)
+        self.cqr_q_hat_by_category = result
+        return result
+
+    def _score_cal_ledger(
+        self,
+        cal_ledger: pd.DataFrame,
+    ) -> Dict[str, np.ndarray]:
+        """
+        Internal: run predictions over cal_ledger, return
+        {category: score_array}. Shared by both collect methods.
+        """
         cal_ledger = cal_ledger.copy()
         cal_ledger["date"] = pd.to_datetime(cal_ledger["date"])
         cal_dates = sorted(cal_ledger["date"].unique())
         if not cal_dates:
-            return np.array([])
+            return {}
         cal_start = cal_dates[0]
 
-        all_y: List[float] = []
-        all_p10: List[float] = []
-        all_p90: List[float] = []
+        by_cat: Dict[str, List[float]] = {}
 
         for mid in cal_ledger["merchant_id"].unique():
             m_cal = cal_ledger[cal_ledger["merchant_id"] == mid].sort_values("date")
@@ -276,6 +334,9 @@ class QuantileForecaster:
             ]
             if len(m_hist) < MIN_HISTORY_DAYS or m_cal.empty:
                 continue
+
+            category = m_hist["merchant_category"].iloc[-1]
+
             try:
                 preds = self._recursive_predict(m_hist, mid, horizon=len(m_cal))
             except (InsufficientHistoryError, MerchantNotFoundError):
@@ -283,17 +344,15 @@ class QuantileForecaster:
 
             y_true = m_cal[TARGET_COLUMN].values
             n = min(len(y_true), len(preds))
-            all_y.extend(y_true[:n].tolist())
-            all_p10.extend(preds["p10"].values[:n].tolist())
-            all_p90.extend(preds["p90"].values[:n].tolist())
+            scores = np.maximum(
+                preds["p10"].values[:n] - y_true[:n],
+                y_true[:n] - preds["p90"].values[:n],
+            )
+            if category not in by_cat:
+                by_cat[category] = []
+            by_cat[category].extend(scores.tolist())
 
-        if not all_y:
-            return np.array([])
-
-        y = np.array(all_y)
-        p10 = np.array(all_p10)
-        p90 = np.array(all_p90)
-        return np.maximum(p10 - y, y - p90)
+        return {cat: np.array(v) for cat, v in by_cat.items()}
 
     def save(self, directory: Path = MODELS_DIR) -> None:
         directory.mkdir(parents=True, exist_ok=True)
@@ -338,14 +397,33 @@ class QuantileForecaster:
             raise InsufficientHistoryError(merchant_id, len(history), MIN_HISTORY_DAYS)
 
         preds = self._recursive_predict(history, merchant_id, horizon)
-        if apply_calibration and self.cqr_q_hat is not None and self.cqr_q_hat != 0.0:
-            adj_p10, adj_p90 = apply_cqr(
-                preds["p10"].values, preds["p90"].values, self.cqr_q_hat
-            )
-            preds = preds.copy()
-            preds["p10"] = np.round(adj_p10, 2)
-            preds["p90"] = np.round(adj_p90, 2)
+
+        if apply_calibration:
+            # Prefer per-category q_hat; fall back to global if category not
+            # present in calibration set (e.g. new category added after training)
+            category = history["merchant_category"].iloc[-1]
+            q_hat = self._resolve_q_hat(category)
+            if q_hat is not None and q_hat != 0.0:
+                adj_p10, adj_p90 = apply_cqr(
+                    preds["p10"].values, preds["p90"].values, q_hat
+                )
+                preds = preds.copy()
+                preds["p10"] = np.round(adj_p10, 2)
+                preds["p90"] = np.round(adj_p90, 2)
         return preds
+
+    def _resolve_q_hat(self, category: str) -> Optional[float]:
+        """
+        Return the q_hat to use for a given category.
+
+        Priority:
+          1. cqr_q_hat_by_category[category]  — per-category (most specific)
+          2. cqr_q_hat                         — global pooled fallback
+          3. None                              — no calibration applied
+        """
+        if self.cqr_q_hat_by_category and category in self.cqr_q_hat_by_category:
+            return self.cqr_q_hat_by_category[category]
+        return self.cqr_q_hat
 
     def _recursive_predict(
         self,
