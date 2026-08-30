@@ -530,26 +530,30 @@ def run_backtest(
     num_boost_round: int = 300,
     min_train_days: int = 90,
     target_coverage: float = 0.80,
+    min_cat_scores: int = 10,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
-    Walk-forward backtest with CQR calibration.
+    Walk-forward backtest with both global and per-category CQR calibration.
 
     Fold structure
     --------------
-    Each iteration has three windows:
-      train   : [start, cutoff)              — model training
-      calib   : [cutoff, cutoff+HORIZON)     — CQR score collection
-      test    : [cutoff+HORIZON, cutoff+2*HORIZON)  — evaluation
+    Each iteration:
+      train   : [start, cutoff)
+      calib   : [cutoff, cutoff+HORIZON)     — scores collected here
+      test    : [cutoff+HORIZON, cutoff+2*HORIZON)  — evaluated here
 
-    The correction q_hat is computed on the calib window and applied to
-    test-window predictions. This ensures the held-out test numbers are
-    never used to compute q_hat (no information leakage into calibration).
+    For each fold, calib scores are grouped by merchant_category.
+    A per-category q_hat is computed from those category scores (with a
+    min_cat_scores guard — if a category has fewer than that many scores in
+    the fold's calib window, it falls back to the global q_hat for that fold).
 
-    We need 2*HORIZON days after cutoff, so the loop ends when
-    cutoff + 2*HORIZON - 1 > last_date.
+    Fold rows carry both cal_coverage (global q_hat) and percat_coverage
+    (per-category q_hat) so the aggregate comparison is fair: same merchants,
+    same test windows, same total day count.
 
-    Both raw (uncalibrated) and calibrated metrics are reported so you can
-    see the delta from the leakage fix alone vs. leakage fix + CQR.
+    Also records percat_q_hat_used (the actual q_hat applied for that
+    merchant's category in that fold) and a percat_q_hat_fallback flag so
+    you can see which folds fell back to global.
     """
     ledger = ledger.copy()
     ledger["date"] = pd.to_datetime(ledger["date"])
@@ -565,7 +569,7 @@ def run_backtest(
         calib_end = cutoff + pd.Timedelta(days=HORIZON - 1)
         test_end  = cutoff + pd.Timedelta(days=2 * HORIZON - 1)
         if test_end > last_date:
-            break  # not enough data for a full calib+test pair
+            break
 
         fold_idx += 1
         train_data = ledger[ledger["date"] < cutoff]
@@ -585,13 +589,35 @@ def run_backtest(
             cutoff += pd.Timedelta(days=HORIZON)
             continue
 
-        # ---- Calibrate (CQR) ----
-        # Give the forecaster history up through train window for calib predictions
-        q_hat = fc.calibrate(calib_data, target_coverage=target_coverage)
+        # ---- Calibrate: global q_hat + per-category q_hats ----
+        # Global: one number across all categories in this fold's calib window
+        scores_by_cat = fc._score_cal_ledger(calib_data)
+        all_scores_flat = (
+            np.concatenate(list(scores_by_cat.values()))
+            if scores_by_cat else np.array([])
+        )
+        global_q_hat = (
+            compute_cqr_correction_from_scores(all_scores_flat, target_coverage)
+            if len(all_scores_flat) >= 10 else 0.0
+        )
+
+        # Per-category: one q_hat per category, with fallback to global
+        # if the category has fewer than min_cat_scores in this fold.
+        cat_q_hats: Dict[str, float] = {}
+        cat_n_scores: Dict[str, int] = {}
+        cat_fallback: Dict[str, bool] = {}
+        for cat, scores in scores_by_cat.items():
+            n = len(scores)
+            cat_n_scores[cat] = n
+            if n < min_cat_scores:
+                cat_q_hats[cat] = global_q_hat
+                cat_fallback[cat] = True
+            else:
+                cat_q_hats[cat] = compute_cqr_correction_from_scores(scores, target_coverage)
+                cat_fallback[cat] = False
 
         # ---- Evaluate on test window ----
-        merchants = test_data["merchant_id"].unique()
-        for mid in merchants:
+        for mid in test_data["merchant_id"].unique():
             m_test = test_data[test_data["merchant_id"] == mid].sort_values("date")
             if m_test.empty:
                 continue
@@ -601,15 +627,12 @@ def run_backtest(
 
             category = m_history["merchant_category"].iloc[-1]
 
-            # We predict from end of calib window — give forecaster calib data
-            # as additional history so its lags reflect recent values
             m_calib = calib_data[calib_data["merchant_id"] == mid].sort_values("date")
             m_hist_through_calib = pd.concat(
                 [m_history, m_calib], ignore_index=True
             ).sort_values("date")
 
             try:
-                # Raw predictions (no CQR)
                 raw_preds = fc._recursive_predict(
                     m_hist_through_calib, mid, horizon=len(m_test)
                 )
@@ -621,29 +644,45 @@ def run_backtest(
             raw_p50 = raw_preds["p50"].values
             raw_p90 = raw_preds["p90"].values
 
-            # CQR-adjusted predictions
-            cal_p10, cal_p90 = apply_cqr(raw_p10, raw_p90, q_hat)
+            # Global CQR
+            cal_p10, cal_p90 = apply_cqr(raw_p10, raw_p90, global_q_hat)
 
-            # Ordering violations (diagnostic)
+            # Per-category CQR — use category-specific q_hat, fall back to
+            # global if category wasn't present in this fold's calib window
+            pcat_q = cat_q_hats.get(category, global_q_hat)
+            used_fallback = cat_fallback.get(category, True)
+            percat_p10, percat_p90 = apply_cqr(raw_p10, raw_p90, pcat_q)
+
             n_viol = _count_ordering_violations(raw_preds)
 
             fold_rows.append({
-                "fold": fold_idx,
-                "cutoff_date": cutoff.date(),
-                "merchant_id": mid,
+                "fold":             fold_idx,
+                "cutoff_date":      cutoff.date(),
+                "merchant_id":      mid,
                 "merchant_category": category,
-                "n_days": len(y_true),
-                "q_hat": round(q_hat, 2),
-                # Raw metrics (leakage-fixed trajectories, no CQR)
-                "raw_pinball_p10": _pinball(y_true, raw_p10, 0.1),
-                "raw_pinball_p50": _pinball(y_true, raw_p50, 0.5),
-                "raw_pinball_p90": _pinball(y_true, raw_p90, 0.9),
-                "raw_coverage": _coverage(y_true, raw_p10, raw_p90),
-                # Calibrated metrics (leakage fix + CQR)
-                "cal_pinball_p10": _pinball(y_true, cal_p10, 0.1),
-                "cal_pinball_p50": _pinball(y_true, raw_p50, 0.5),
-                "cal_pinball_p90": _pinball(y_true, cal_p90, 0.9),
-                "cal_coverage": _coverage(y_true, cal_p10, cal_p90),
+                "n_days":           len(y_true),
+                # q_hats
+                "q_hat_global":     round(global_q_hat, 2),
+                "q_hat_percat":     round(pcat_q, 2),
+                "percat_fallback":  used_fallback,
+                "cat_n_cal_scores": cat_n_scores.get(category, 0),
+                # kept as q_hat for backward compat with existing summary code
+                "q_hat":            round(global_q_hat, 2),
+                # Raw
+                "raw_pinball_p10":  _pinball(y_true, raw_p10, 0.1),
+                "raw_pinball_p50":  _pinball(y_true, raw_p50, 0.5),
+                "raw_pinball_p90":  _pinball(y_true, raw_p90, 0.9),
+                "raw_coverage":     _coverage(y_true, raw_p10, raw_p90),
+                # Global CQR
+                "cal_pinball_p10":  _pinball(y_true, cal_p10, 0.1),
+                "cal_pinball_p50":  _pinball(y_true, raw_p50, 0.5),
+                "cal_pinball_p90":  _pinball(y_true, cal_p90, 0.9),
+                "cal_coverage":     _coverage(y_true, cal_p10, cal_p90),
+                # Per-category CQR
+                "percat_pinball_p10": _pinball(y_true, percat_p10, 0.1),
+                "percat_pinball_p50": _pinball(y_true, raw_p50, 0.5),
+                "percat_pinball_p90": _pinball(y_true, percat_p90, 0.9),
+                "percat_coverage":    _coverage(y_true, percat_p10, percat_p90),
                 # Diagnostics
                 "ordering_violations": n_viol,
             })
@@ -663,20 +702,28 @@ def _aggregate_summary(fold_results: pd.DataFrame) -> pd.DataFrame:
 
     def _wavg(grp: pd.DataFrame) -> pd.Series:
         w = grp["n_days"]
-        return pd.Series({
-            "raw_pinball_p10":  np.average(grp["raw_pinball_p10"],  weights=w),
-            "raw_pinball_p50":  np.average(grp["raw_pinball_p50"],  weights=w),
-            "raw_pinball_p90":  np.average(grp["raw_pinball_p90"],  weights=w),
-            "raw_coverage":     np.average(grp["raw_coverage"],     weights=w),
-            "cal_pinball_p10":  np.average(grp["cal_pinball_p10"],  weights=w),
-            "cal_pinball_p50":  np.average(grp["cal_pinball_p50"],  weights=w),
-            "cal_pinball_p90":  np.average(grp["cal_pinball_p90"],  weights=w),
-            "cal_coverage":     np.average(grp["cal_coverage"],     weights=w),
-            "mean_q_hat":       float(grp["q_hat"].mean()),
-            "ordering_violations": int(grp["ordering_violations"].sum()),
-            "n_merchant_folds": len(grp),
-            "n_days_total":     int(w.sum()),
-        })
+        d: dict = {
+            "raw_pinball_p10":     np.average(grp["raw_pinball_p10"],  weights=w),
+            "raw_pinball_p50":     np.average(grp["raw_pinball_p50"],  weights=w),
+            "raw_pinball_p90":     np.average(grp["raw_pinball_p90"],  weights=w),
+            "raw_coverage":        np.average(grp["raw_coverage"],     weights=w),
+            "cal_pinball_p10":     np.average(grp["cal_pinball_p10"],  weights=w),
+            "cal_pinball_p50":     np.average(grp["cal_pinball_p50"],  weights=w),
+            "cal_pinball_p90":     np.average(grp["cal_pinball_p90"],  weights=w),
+            "cal_coverage":        np.average(grp["cal_coverage"],     weights=w),
+            "mean_q_hat":          float(grp["q_hat"].mean()),
+        }
+        # per-category CQR columns (added in updated run_backtest)
+        if "percat_coverage" in grp.columns:
+            d["percat_pinball_p10"] = np.average(grp["percat_pinball_p10"], weights=w)
+            d["percat_pinball_p50"] = np.average(grp["percat_pinball_p50"], weights=w)
+            d["percat_pinball_p90"] = np.average(grp["percat_pinball_p90"], weights=w)
+            d["percat_coverage"]    = np.average(grp["percat_coverage"],    weights=w)
+            d["percat_fallback_pct"] = float(grp["percat_fallback"].mean()) if "percat_fallback" in grp.columns else float("nan")
+        d["ordering_violations"] = int(grp["ordering_violations"].sum())
+        d["n_merchant_folds"]    = len(grp)
+        d["n_days_total"]        = int(w.sum())
+        return pd.Series(d)
 
     overall = _wavg(fold_results).to_frame().T
     overall.insert(0, "merchant_category", "overall")

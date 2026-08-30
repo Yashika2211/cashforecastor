@@ -136,10 +136,36 @@ def main() -> None:
     print(f"  Saved → {REPORTS_DIR / 'backtest_summary.csv'}\n")
 
     if not summary.empty:
-        print("Backtest summary:")
-        print("-" * 100)
+        print("Backtest summary (raw / global-CQR / per-category-CQR):")
+        print("-" * 110)
         _print_summary(summary)
-        print("-" * 100)
+        print("-" * 110)
+        print()
+
+    # Per-fold per-category q_hats — stability check
+    if not fold_results.empty and "q_hat_percat" in fold_results.columns:
+        print("Per-fold per-category q_hat (watch for wild swings):")
+        cats = sorted(fold_results["merchant_category"].unique())
+        folds = sorted(fold_results["fold"].unique())
+        # header
+        hdr = f"  {'fold':>5}  {'cutoff':>12}" + "".join(f"  {c[:12]:>13}" for c in cats)
+        print(hdr)
+        print("  " + "-" * (len(hdr) - 2))
+        for fold_i in folds:
+            fold_slice = fold_results[fold_results["fold"] == fold_i]
+            cutoff_d = fold_slice["cutoff_date"].iloc[0]
+            row_str = f"  {fold_i:>5}  {str(cutoff_d):>12}"
+            for cat in cats:
+                cat_rows = fold_slice[fold_slice["merchant_category"] == cat]
+                if cat_rows.empty:
+                    row_str += f"  {'—':>13}"
+                else:
+                    q = cat_rows["q_hat_percat"].iloc[0]
+                    fb = cat_rows["percat_fallback"].iloc[0]
+                    marker = "*" if fb else " "
+                    row_str += f"  {q:>12,.0f}{marker}"
+            print(row_str)
+        print("  (* = fell back to global q_hat, category had < 10 calib scores in that fold)")
         print()
 
     # ------------------------------------------------------------------
@@ -328,25 +354,29 @@ def _validate_calibration(
 
 
 def _print_summary(summary: pd.DataFrame) -> None:
+    has_percat = "percat_coverage" in summary.columns
     header = (
-        f"{'Category':<22}  {'raw cov':>8}  {'cal cov':>8}  "
-        f"{'raw P50':>10}  {'cal P50':>10}  "
-        f"{'raw P10':>10}  {'raw P90':>10}  "
-        f"{'q_hat':>10}  {'N days':>7}"
+        f"{'Category':<22}  {'raw':>7}  {'global':>7}  "
+        + (f"{'per-cat':>8}  " if has_percat else "")
+        + f"{'pb P50':>10}  {'pb P10':>10}  {'pb P90':>10}  {'q_hat':>10}  {'N days':>7}"
     )
     print(header)
     for row in summary.itertuples(index=False):
         n_days = int(row.n_days_total) if not (
             isinstance(row.n_days_total, float) and np.isnan(row.n_days_total)
         ) else "-"
+        percat_str = ""
+        if has_percat:
+            pc = getattr(row, "percat_coverage", float("nan"))
+            percat_str = f"{pc:>7.1%}  " if not np.isnan(pc) else f"{'—':>7}  "
         print(
             f"{row.merchant_category:<22}  "
-            f"{row.raw_coverage:>7.1%}  "
-            f"{row.cal_coverage:>7.1%}  "
-            f"{row.raw_pinball_p50:>10,.0f}  "
+            f"{row.raw_coverage:>6.1%}  "
+            f"{row.cal_coverage:>6.1%}  "
+            + percat_str +
             f"{row.cal_pinball_p50:>10,.0f}  "
-            f"{row.raw_pinball_p10:>10,.0f}  "
-            f"{row.raw_pinball_p90:>10,.0f}  "
+            f"{row.cal_pinball_p10:>10,.0f}  "
+            f"{row.cal_pinball_p90:>10,.0f}  "
             f"{row.mean_q_hat:>10,.0f}  "
             f"{str(n_days):>7}"
         )
