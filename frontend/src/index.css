@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --bg:           #0B0D10;
   --surface:      #14171B;
@@ -32,3 +30,65 @@ body {
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); }
+
+/* Record-table rows (exceptions / matches panels) */
+.rt-row {
+  display: grid;
+  gap: 0 10px;
+  align-items: start;
+  padding: 5px 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  border-bottom: 1px solid var(--border);
+}
+.rt-row--head {
+  padding: 4px 6px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: var(--font-ui);
+  margin-bottom: 1px;
+  border-bottom: 1px solid var(--border);
+}
+.rt-row--alt { background: var(--surface2); }
+.rt-row:not(.rt-row--head):hover { background-color: rgba(255, 255, 255, 0.045); }
+
+/* View tabs (cash / books) */
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Inputs */
+.select-input {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 28px 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  min-width: 180px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238B929B'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.select-input:hover:not(:disabled) { border-color: #363c44; }
+.select-input:focus { border-color: var(--accent); }
+.select-input:disabled { cursor: not-allowed; opacity: 0.6; }
+.select-input:not(:disabled) { cursor: pointer; }

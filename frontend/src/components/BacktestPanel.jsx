@@ -1,4 +1,5 @@
 import FoldReliabilityStrip from './FoldReliabilityStrip'
+import { fmtPct, fmtInt, toneForScore } from '../format'
 
 const LABELS = {
   overall:           'overall',
@@ -7,16 +8,6 @@ const LABELS = {
   marketplace:       'marketplace',
   food_delivery:     'food delivery',
 }
-
-function covColor(v) {
-  if (v == null) return 'var(--muted)'
-  if (v >= 0.80) return 'var(--good)'
-  if (v >= 0.70) return 'var(--warn)'
-  return 'var(--bad)'
-}
-
-function pct(v)  { return v == null ? '—' : (v * 100).toFixed(1) + '%' }
-function num(v)  { return v == null ? '—' : Math.round(v).toLocaleString('en-IN') }
 
 export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError, loading, error }) {
   return (
@@ -50,14 +41,14 @@ export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError
                   <td style={tdStyle('left', isOverall ? 'var(--text)' : 'var(--muted)')}>
                     {LABELS[row.merchant_category] || row.merchant_category}
                   </td>
-                  <td style={tdStyle('right', 'var(--muted)')}>{pct(row.raw_coverage)}</td>
-                  <td style={tdStyle('right', 'var(--muted)')}>{pct(row.global_coverage)}</td>
-                  <td style={tdStyle('right', covColor(row.coverage_p10_p90))}>
-                    <strong>{pct(row.coverage_p10_p90)}</strong>
+                  <td style={tdStyle('right', 'var(--muted)')}>{fmtPct(row.raw_coverage)}</td>
+                  <td style={tdStyle('right', 'var(--muted)')}>{fmtPct(row.global_coverage)}</td>
+                  <td style={tdStyle('right', toneForScore(row.coverage_p10_p90, { good: 0.80, warn: 0.70 }))}>
+                    <strong>{fmtPct(row.coverage_p10_p90)}</strong>
                   </td>
-                  <td style={tdStyle('right')}>{num(row.pinball_p50)}</td>
-                  <td style={tdStyle('right')}>{num(row.pinball_p10)}</td>
-                  <td style={tdStyle('right')}>{num(row.pinball_p90)}</td>
+                  <td style={tdStyle('right')}>{fmtInt(row.pinball_p50)}</td>
+                  <td style={tdStyle('right')}>{fmtInt(row.pinball_p10)}</td>
+                  <td style={tdStyle('right')}>{fmtInt(row.pinball_p90)}</td>
                   <td style={tdStyle('right', 'var(--muted)')}>{row.n_days_total ?? '—'}</td>
                 </tr>
               )

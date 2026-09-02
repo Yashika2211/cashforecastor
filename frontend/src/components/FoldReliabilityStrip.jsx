@@ -1,10 +1,5 @@
 import { useState } from 'react'
-
-function coverageColor(v) {
-  if (v >= 0.80) return 'var(--good)'
-  if (v >= 0.70) return 'var(--warn)'
-  return 'var(--bad)'
-}
+import { fmtPct, toneForScore } from '../format'
 
 function fmtQ(q) {
   if (q === null || q === undefined) return '—'
@@ -24,12 +19,7 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
 
   return (
     <div style={{ marginBottom: '10px' }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        marginBottom: '4px',
-      }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         <span style={{ color: 'var(--muted)', fontSize: '11px', fontFamily: 'var(--font-ui)', letterSpacing: '0.04em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
           fold coverage
         </span>
@@ -42,7 +32,7 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
               style={{
                 width: '22px',
                 height: '18px',
-                background: coverageColor(f.coverage),
+                background: toneForScore(f.coverage, { good: 0.80, warn: 0.70 }),
                 opacity: hovered?.fold === f.fold ? 1 : 0.75,
                 borderRadius: '2px',
                 cursor: 'default',
@@ -52,7 +42,6 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
             />
           ))}
 
-          {/* Tooltip */}
           {hovered && (
             <div style={{
               position: 'absolute',
@@ -70,8 +59,8 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
               pointerEvents: 'none',
             }}>
               <div style={{ color: 'var(--muted)' }}>fold {hovered.fold} · cutoff {hovered.cutoff_date}</div>
-              <div style={{ color: coverageColor(hovered.coverage) }}>
-                coverage &nbsp;{(hovered.coverage * 100).toFixed(1)}%
+              <div style={{ color: toneForScore(hovered.coverage, { good: 0.80, warn: 0.70 }) }}>
+                coverage &nbsp;{fmtPct(hovered.coverage)}
               </div>
               <div style={{ color: hovered.q_hat >= 0 ? 'var(--warn)' : 'var(--good)' }}>
                 CQR q̂ &nbsp;&nbsp;&nbsp;&nbsp;{fmtQ(hovered.q_hat)}
@@ -81,7 +70,6 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
           )}
         </div>
 
-        {/* Legend */}
         <div style={{ display: 'flex', gap: '10px', marginLeft: '6px' }}>
           {[['var(--good)', '≥80%'], ['var(--warn)', '70–80%'], ['var(--bad)', '<70%']].map(([color, label]) => (
             <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
