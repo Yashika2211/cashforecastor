@@ -1,17 +1,24 @@
 """
-FastAPI application for the merchant cash-flow forecaster.
+FastAPI application for the AI Finance Controller (cash-position forecasting
++ books reconciliation).
 
 Endpoints
 ---------
-GET  /health                   – liveness check + model status
-GET  /forecast/{merchant_id}   – 14-day P10/P50/P90 forecast; logged to audit table
-GET  /backtest-metrics         – saved backtest summary (coverage + pinball per category)
-GET  /exceptions               – current low-confidence flags from exceptions.py
-POST /train                    – (utility) re-train models from the default ledger
+GET  /health                       – liveness check + model status
+GET  /forecast/{merchant_id}       – 14-day P10/P50/P90 forecast; logged to audit table
+GET  /backtest-metrics             – saved backtest summary (coverage + pinball per category)
+GET  /exceptions                   – current low-confidence flags from exceptions.py
+POST /train                        – (utility) re-train models from the default ledger
+GET  /reconciliation-summary       – matcher run summary + accuracy (when scored)
+GET  /reconciliation-matches       – resolved ledger<->bank match groups
+GET  /reconciliation-exceptions    – unresolved records with reason codes
+GET  /reconciliation-accuracy      – scored precision/recall/false-match rates
+POST /reconcile                    – (utility) re-run the matcher on the default batch
 """
 from __future__ import annotations
 
 import json
+import math
 from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
@@ -29,10 +36,27 @@ from src.exceptions import (
     InsufficientHistoryError,
     MerchantNotFoundError,
     ModelNotTrainedError,
+    ReconciliationError,
 )
 from src.forecast import MODELS_DIR, REPORTS_DIR, QuantileForecaster
+from src.reconcile import run_reconciliation
 
 ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_RECON_LEDGER = ROOT / "data" / "recon_ledger.csv"
+DEFAULT_RECON_BANK = ROOT / "data" / "recon_bank_settlement.csv"
+
+
+def _none_if_nan(value: Any) -> Any:
+    if value is None:
+        return None
+    if isinstance(value, float) and math.isnan(value):
+        return None
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    return value
 DEFAULT_LEDGER = ROOT / "data" / "synthetic_ledger.csv"
 
 # ---------------------------------------------------------------------------
@@ -120,6 +144,74 @@ class TrainResponse(BaseModel):
     status: str
     merchants: int
     daily_rows: int
+
+
+class ReconciliationMatch(BaseModel):
+    match_group_id: str
+    ledger_txn_ids: List[str]
+    bank_row_id: str
+    utr: str
+    rule: str
+    member_count: int
+    matched_amount: float
+    expected_amount: float
+    delta: float
+    confidence: Optional[float] = None
+
+
+class ReconciliationException(BaseModel):
+    record_type: str            # "ledger" | "bank"
+    record_id: str
+    merchant_id: str
+    reason_code: str
+    detail: Optional[str] = None
+    candidate_id: Optional[str] = None
+    candidate_amount: Optional[float] = None
+    delta: Optional[float] = None
+    confidence: Optional[float] = None
+    competing_candidates: Optional[List[str]] = None
+    note: Optional[str] = None
+
+
+class ReconciliationSummary(BaseModel):
+    n_ledger_rows: int
+    n_bank_rows: int
+    n_ledger_matched: int
+    n_ledger_exception: int
+    match_rate: float
+    records_per_second: float
+    rule_counts: Dict[str, int]
+    reason_code_counts: Dict[str, int]
+    # populated only when reconciliation_accuracy.json also exists, else all None:
+    precision: Optional[float] = None
+    recall: Optional[float] = None
+    false_match_rate_pooled: Optional[float] = None
+    wrong_attribution_rate: Optional[float] = None
+    trap_recall: Optional[float] = None
+
+
+class ReconciliationAccuracy(BaseModel):
+    precision: float
+    recall: float
+    match_rate: float
+    false_match_rate_ledger: float
+    false_match_rate_bank: float
+    false_match_rate_pooled: float
+    wrong_attribution_rate: float
+    duplicate_precision: float
+    duplicate_recall: float
+    trap_recall: float
+    reason_code_accuracy: float
+    records_per_second: float
+    warning: Optional[str] = None
+
+
+class ReconcileRunResponse(BaseModel):
+    status: str
+    n_ledger_rows: int
+    n_bank_rows: int
+    match_rate: float
+    records_per_second: float
 
 
 # ---------------------------------------------------------------------------
@@ -324,6 +416,177 @@ def get_backtest_folds() -> List[Dict[str, Any]]:
         for r in fold_summary.itertuples(index=False)
     ]
 
+
+# ---------------------------------------------------------------------------
+# Reconciliation ("books half") routes
+# ---------------------------------------------------------------------------
+
+@app.get("/reconciliation-summary", response_model=ReconciliationSummary)
+def get_reconciliation_summary() -> ReconciliationSummary:
+    """
+    Reads reports/reconciliation_summary.json, merging in
+    reports/reconciliation_accuracy.json when present (precision/recall/
+    false_match_rate/wrong_attribution/trap_recall stay None otherwise).
+    """
+    summary_path = REPORTS_DIR / "reconciliation_summary.json"
+    if not summary_path.exists():
+        raise HTTPException(status_code=404, detail="Reconciliation not run. Run run_reconciliation.py first.")
+    with open(summary_path) as f:
+        summary = json.load(f)
+
+    accuracy: Dict[str, Any] = {}
+    accuracy_path = REPORTS_DIR / "reconciliation_accuracy.json"
+    if accuracy_path.exists():
+        with open(accuracy_path) as f:
+            accuracy = json.load(f)
+
+    return ReconciliationSummary(
+        n_ledger_rows=summary["n_ledger_rows"],
+        n_bank_rows=summary["n_bank_rows"],
+        n_ledger_matched=summary["n_ledger_matched"],
+        n_ledger_exception=summary["n_ledger_exception"],
+        match_rate=summary["match_rate"],
+        records_per_second=summary["records_per_second"],
+        rule_counts=summary["rule_counts"],
+        reason_code_counts=summary["reason_code_counts"],
+        precision=accuracy.get("precision"),
+        recall=accuracy.get("recall"),
+        false_match_rate_pooled=accuracy.get("false_match_rate_pooled"),
+        wrong_attribution_rate=accuracy.get("wrong_attribution_rate"),
+        trap_recall=accuracy.get("trap_recall"),
+    )
+
+
+@app.get("/reconciliation-matches", response_model=List[ReconciliationMatch])
+def get_reconciliation_matches() -> List[ReconciliationMatch]:
+    """Resolved ledger<->bank match groups from the last matcher run."""
+    matches_path = REPORTS_DIR / "reconciliation_matches.csv"
+    if not matches_path.exists():
+        raise HTTPException(status_code=404, detail="Reconciliation not run. Run run_reconciliation.py first.")
+    df = pd.read_csv(matches_path)
+    return [
+        ReconciliationMatch(
+            match_group_id=str(row.match_group_id),
+            ledger_txn_ids=str(row.ledger_txn_ids).split("|") if row.ledger_txn_ids else [],
+            bank_row_id=str(row.bank_row_id),
+            utr=str(row.utr),
+            rule=str(row.rule),
+            member_count=int(row.member_count),
+            matched_amount=float(row.matched_amount),
+            expected_amount=float(row.expected_amount),
+            delta=float(row.delta),
+            confidence=_none_if_nan(row.confidence),
+        )
+        for row in df.itertuples(index=False)
+    ]
+
+
+@app.get("/reconciliation-exceptions", response_model=List[ReconciliationException])
+def get_reconciliation_exceptions() -> List[ReconciliationException]:
+    """Unresolved records from the last matcher run, each with a specific reason code."""
+    exceptions_path = REPORTS_DIR / "reconciliation_exceptions.json"
+    if not exceptions_path.exists():
+        raise HTTPException(status_code=404, detail="Reconciliation not run. Run run_reconciliation.py first.")
+    with open(exceptions_path) as f:
+        raw = json.load(f)
+    return [
+        ReconciliationException(
+            record_type=item["record_type"],
+            record_id=item["record_id"],
+            merchant_id=item.get("merchant_id") or "",
+            reason_code=item["reason_code"],
+            detail=item.get("detail"),
+            candidate_id=item.get("candidate_id"),
+            candidate_amount=_none_if_nan(item.get("candidate_amount")),
+            delta=_none_if_nan(item.get("delta")),
+            confidence=_none_if_nan(item.get("confidence")),
+            competing_candidates=item["competing_candidates"].split("|")
+                if item.get("competing_candidates") else None,
+            note=item.get("note"),
+        )
+        for item in raw
+    ]
+
+
+@app.get("/reconciliation-accuracy", response_model=ReconciliationAccuracy)
+def get_reconciliation_accuracy() -> ReconciliationAccuracy:
+    """Scored precision/recall/false-match rates from the last score_reconciliation.py run."""
+    accuracy_path = REPORTS_DIR / "reconciliation_accuracy.json"
+    if not accuracy_path.exists():
+        raise HTTPException(status_code=404, detail="Reconciliation not scored. Run score_reconciliation.py first.")
+    with open(accuracy_path) as f:
+        acc = json.load(f)
+    return ReconciliationAccuracy(
+        precision=acc["precision"],
+        recall=acc["recall"],
+        match_rate=acc["match_rate"],
+        false_match_rate_ledger=acc["false_match_rate_ledger"],
+        false_match_rate_bank=acc["false_match_rate_bank"],
+        false_match_rate_pooled=acc["false_match_rate_pooled"],
+        wrong_attribution_rate=acc["wrong_attribution_rate"],
+        duplicate_precision=acc["duplicate_precision"],
+        duplicate_recall=acc["duplicate_recall"],
+        trap_recall=acc["trap_recall"],
+        reason_code_accuracy=acc["reason_code_accuracy"],
+        records_per_second=acc["records_per_second"] or 0.0,
+        warning=acc.get("warning"),
+    )
+
+
+@app.post("/reconcile", response_model=ReconcileRunResponse)
+def reconcile_now() -> ReconcileRunResponse:
+    """
+    Utility mirroring POST /train: runs the matcher in-process on the default
+    data/recon_ledger.csv + data/recon_bank_settlement.csv and writes the same
+    report files run_reconciliation.py would. Dev convenience only.
+    """
+    if not DEFAULT_RECON_LEDGER.exists() or not DEFAULT_RECON_BANK.exists():
+        raise HTTPException(status_code=404, detail="Reconciliation data not found. Run data/generate_synthetic_recon.py first.")
+    ledger = pd.read_csv(DEFAULT_RECON_LEDGER)
+    bank = pd.read_csv(DEFAULT_RECON_BANK)
+    try:
+        result = run_reconciliation(ledger, bank)
+    except ReconciliationError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    matches_out = result.matches.copy()
+    if not matches_out.empty:
+        matches_out["ledger_txn_ids"] = matches_out["ledger_txn_ids"].apply(lambda ids: "|".join(ids))
+    matches_out.to_csv(REPORTS_DIR / "reconciliation_matches.csv", index=False)
+
+    exceptions_records = result.exceptions.to_dict(orient="records")
+    with open(REPORTS_DIR / "reconciliation_exceptions.json", "w") as f:
+        json.dump(exceptions_records, f, indent=2, default=lambda x: None if pd.isna(x) else x)
+
+    n_ledger, n_bank = result.stats["n_ledger_rows"], result.stats["n_bank_rows"]
+    n_ledger_matched = int(sum(result.matches["member_count"])) if not result.matches.empty else 0
+    n_ledger_exception = int((result.exceptions["record_type"] == "ledger").sum()) if not result.exceptions.empty else 0
+    match_rate = n_ledger_matched / n_ledger if n_ledger else 0.0
+
+    rule_counts = result.stats["rule_counts"]
+    reason_code_counts = result.stats["reason_code_counts"]
+    summary = {
+        "generated_at": datetime.utcnow().isoformat(),
+        "ledger_path": str(DEFAULT_RECON_LEDGER),
+        "bank_path": str(DEFAULT_RECON_BANK),
+        "n_ledger_rows": n_ledger,
+        "n_bank_rows": n_bank,
+        "n_ledger_matched": n_ledger_matched,
+        "n_ledger_exception": n_ledger_exception,
+        "match_rate": round(match_rate, 4),
+        "rule_counts": rule_counts,
+        "reason_code_counts": reason_code_counts,
+        "elapsed_seconds": result.stats["elapsed_seconds"],
+        "records_per_second": result.stats["records_per_second"],
+    }
+    with open(REPORTS_DIR / "reconciliation_summary.json", "w") as f:
+        json.dump(summary, f, indent=2)
+
+    return ReconcileRunResponse(
+        status="reconciled", n_ledger_rows=n_ledger, n_bank_rows=n_bank,
+        match_rate=round(match_rate, 4), records_per_second=result.stats["records_per_second"],
+    )
 
 
 def train_models(ledger_path: Optional[str] = None) -> TrainResponse:

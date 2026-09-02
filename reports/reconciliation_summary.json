@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-09-01T18:42:17.543321+00:00",
+  "ledger_path": "/Users/yashika2209/Desktop/razorpay final/data/recon_ledger.csv",
+  "bank_path": "/Users/yashika2209/Desktop/razorpay final/data/recon_bank_settlement.csv",
+  "n_ledger_rows": 137,
+  "n_bank_rows": 113,
+  "n_ledger_matched": 108,
+  "n_ledger_exception": 29,
+  "match_rate": 0.7883,
+  "rule_counts": {
+    "exact_1to1": 81,
+    "fee_adjusted_1to1": 1,
+    "timing_near_miss_exact": 6,
+    "timing_near_miss_fee_adjusted": 0,
+    "batch_subset_sum_hinted": 6,
+    "batch_subset_sum": 0
+  },
+  "reason_code_counts": {
+    "AMOUNT_MISMATCH": 0,
+    "ORPHAN_BANK_CREDIT": 14,
+    "ORPHAN_LEDGER_TXN": 18,
+    "DUPLICATE_SUSPECTED": 8,
+    "TIMING_OUT_OF_WINDOW": 0,
+    "UNRESOLVED_SUBSET_SUM": 8
+  },
+  "elapsed_seconds": 0.0027774160000000048,
+  "records_per_second": 90011.72312681988
+}

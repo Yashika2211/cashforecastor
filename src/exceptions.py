@@ -26,3 +26,21 @@ class MerchantNotFoundError(CashflowError):
     def __init__(self, merchant_id: str):
         self.merchant_id = merchant_id
         super().__init__(f"No ledger history for merchant {merchant_id}.")
+
+
+class ReconciliationError(Exception):
+    """Base error for the reconciliation pipeline (separate from CashflowError — a different pipeline)."""
+
+
+class MalformedLedgerRowError(ReconciliationError):
+    def __init__(self, row_index: int, reason: str):
+        self.row_index = row_index
+        self.reason = reason
+        super().__init__(f"Malformed ledger row at index {row_index}: {reason}")
+
+
+class MalformedSettlementRowError(ReconciliationError):
+    def __init__(self, row_index: int, reason: str):
+        self.row_index = row_index
+        self.reason = reason
+        super().__init__(f"Malformed settlement row at index {row_index}: {reason}")

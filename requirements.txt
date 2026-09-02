@@ -6,3 +6,4 @@ SQLAlchemy==2.0.52
 pandas==2.3.3
 numpy==2.0.2
 lightgbm==4.6.0
+pytest==8.3.4

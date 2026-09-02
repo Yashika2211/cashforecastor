@@ -1,0 +1,2922 @@
+{
+  "meta": {
+    "seed": 42,
+    "window_start": "2026-02-01",
+    "window_end": "2026-03-02",
+    "generated_by_seed": 42
+  },
+  "ledger_truth": {
+    "LTX000001": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00017",
+      "true_utr": "UTR176337345080",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000002": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00087",
+      "true_utr": "UTR709858687239",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000003": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00087",
+      "true_utr": "UTR709858687239",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000004": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00039",
+      "true_utr": "UTR392808457465",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000005": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00104",
+      "true_utr": "UTR267189521383",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000006": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00007",
+      "true_utr": "UTR670392795762",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000007": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00074",
+      "true_utr": "UTR752664988765",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000008": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00024",
+      "true_utr": "UTR709558659427",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000009": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00020",
+      "true_utr": "UTR707775065800",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000010": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00064",
+      "true_utr": "UTR199566520805",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000011": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00016",
+      "true_utr": "UTR980125281166",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000012": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00050",
+      "true_utr": "UTR321459950354",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000013": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00076",
+      "true_utr": "UTR213423707571",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000014": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00098",
+      "true_utr": "UTR747381280321",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000015": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00087",
+      "true_utr": "UTR709858687239",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000016": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00087",
+      "true_utr": "UTR709858687239",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000017": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00048",
+      "true_utr": "UTR561458857870",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000018": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00072",
+      "true_utr": "UTR385872070927",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000019": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00013",
+      "true_utr": "UTR760378147694",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000020": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00041",
+      "true_utr": "UTR369444962363",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000021": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00054",
+      "true_utr": "UTR454713199460",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000022": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00106",
+      "true_utr": "UTR687267280677",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000023": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00044",
+      "true_utr": "UTR494547632725",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000024": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00009",
+      "true_utr": "UTR748626352046",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000025": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00059",
+      "true_utr": "UTR531877060495",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000026": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00027",
+      "true_utr": "UTR369049286007",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000027": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00100",
+      "true_utr": "UTR520876230963",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000028": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00032",
+      "true_utr": "UTR997822033536",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000029": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00031",
+      "true_utr": "UTR467147756018",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000030": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00028",
+      "true_utr": "UTR347342545679",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000031": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00088",
+      "true_utr": "UTR610244015787",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000032": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00029",
+      "true_utr": "UTR176330432112",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000033": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00038",
+      "true_utr": "UTR356086787600",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000034": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00034",
+      "true_utr": "UTR220930221981",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000035": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00046",
+      "true_utr": "UTR808830852606",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000036": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00040",
+      "true_utr": "UTR768086154476",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000037": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00011",
+      "true_utr": "UTR496079829574",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000038": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00042",
+      "true_utr": "UTR239897407675",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000039": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00088",
+      "true_utr": "UTR610244015787",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000040": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00088",
+      "true_utr": "UTR610244015787",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000041": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00082",
+      "true_utr": "UTR365279673882",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000042": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00102",
+      "true_utr": "UTR959408552670",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000043": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "test_mode_capture"
+    },
+    "LTX000044": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00026",
+      "true_utr": "UTR867503016668",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000045": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00008",
+      "true_utr": "UTR529755286264",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000046": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00056",
+      "true_utr": "UTR557350620231",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000047": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00108",
+      "true_utr": "UTR911477668209",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000048": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00089",
+      "true_utr": "UTR985075368393",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000049": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00068",
+      "true_utr": "UTR328837135378",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000050": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00021",
+      "true_utr": "UTR878910893250",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000051": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00058",
+      "true_utr": "UTR334313689073",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000052": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00101",
+      "true_utr": "UTR217997823723",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000053": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00063",
+      "true_utr": "UTR108333803639",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000054": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00030",
+      "true_utr": "UTR826688445378",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000055": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00077",
+      "true_utr": "UTR255649542797",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000056": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00045",
+      "true_utr": "UTR707137729281",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000057": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00019",
+      "true_utr": "UTR435432107176",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000058": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00099",
+      "true_utr": "UTR647867016008",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000059": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00014",
+      "true_utr": "UTR211482797377",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000060": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00001",
+      "true_utr": "UTR406531716032",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000061": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00018",
+      "true_utr": "UTR932231500497",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000062": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00081",
+      "true_utr": "UTR345868472350",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000063": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00057",
+      "true_utr": "UTR488194318131",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000064": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00047",
+      "true_utr": "UTR191704741583",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000065": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00089",
+      "true_utr": "UTR985075368393",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000066": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00079",
+      "true_utr": "UTR626174950720",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000067": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00097",
+      "true_utr": "UTR283957630373",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000068": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00084",
+      "true_utr": "UTR308152485718",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000069": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00083",
+      "true_utr": "UTR116344489522",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000070": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00084",
+      "true_utr": "UTR308152485718",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000071": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00078",
+      "true_utr": "UTR103606844260",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000072": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00055",
+      "true_utr": "UTR200863333898",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000073": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00010",
+      "true_utr": "UTR880121294435",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000074": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "pending_payout_censored"
+    },
+    "LTX000075": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00002",
+      "true_utr": "UTR194481744306",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000076": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00006",
+      "true_utr": "UTR106583010663",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000077": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00070",
+      "true_utr": "UTR831843411238",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000078": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00052",
+      "true_utr": "UTR200440331424",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000079": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "pending_payout_censored"
+    },
+    "LTX000080": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00067",
+      "true_utr": "UTR246469137494",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000081": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00084",
+      "true_utr": "UTR308152485718",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000082": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00073",
+      "true_utr": "UTR411830789866",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000083": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00033",
+      "true_utr": "UTR453132183629",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000084": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00095",
+      "true_utr": "UTR767544769467",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000085": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00083",
+      "true_utr": "UTR116344489522",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000086": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00091",
+      "true_utr": "UTR568207060341",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000087": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00083",
+      "true_utr": "UTR116344489522",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000088": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00075",
+      "true_utr": "UTR385437854016",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000089": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00092",
+      "true_utr": "UTR714323438388",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000090": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_utr": "UTR328298055905",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000091": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00086",
+      "true_utr": "UTR598186756080",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000092": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00069",
+      "true_utr": "UTR643082008899",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000093": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00094",
+      "true_utr": "UTR760145414106",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000094": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00036",
+      "true_utr": "UTR671086238456",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000095": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00053",
+      "true_utr": "UTR728370753048",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000096": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00003",
+      "true_utr": "UTR667749016328",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000097": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "refund_reversed_internally"
+    },
+    "LTX000098": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00086",
+      "true_utr": "UTR598186756080",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000099": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "test_mode_capture"
+    },
+    "LTX000100": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00086",
+      "true_utr": "UTR598186756080",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000101": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00061",
+      "true_utr": "UTR514692644715",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000102": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00086",
+      "true_utr": "UTR598186756080",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000103": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00037",
+      "true_utr": "UTR963288345560",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000104": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_utr": "UTR328298055905",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000105": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00043",
+      "true_utr": "UTR605340454972",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000106": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_utr": "UTR328298055905",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000107": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_utr": "UTR328298055905",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000108": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_utr": "UTR328298055905",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000109": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00025",
+      "true_utr": "UTR906071393245",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000110": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00066",
+      "true_utr": "UTR104267253620",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000111": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00023",
+      "true_utr": "UTR872312774162",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000112": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00065",
+      "true_utr": "UTR612290845387",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000113": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00090",
+      "true_utr": "UTR563124746696",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000114": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": null,
+      "orphan_reason": "refund_reversed_internally"
+    },
+    "LTX000115": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00004",
+      "true_utr": "UTR272442708696",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000116": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00103",
+      "true_utr": "UTR778154106700",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000117": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00049",
+      "true_utr": "UTR963797070096",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000118": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00051",
+      "true_utr": "UTR564479021131",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000119": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00062",
+      "true_utr": "UTR142636618004",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000120": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00096",
+      "true_utr": "UTR913575961790",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000121": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00005",
+      "true_utr": "UTR503386595431",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000122": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00060",
+      "true_utr": "UTR397662167849",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000123": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00107",
+      "true_utr": "UTR327192661494",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000124": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00093",
+      "true_utr": "UTR279587793609",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000125": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00105",
+      "true_utr": "UTR333495855869",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000126": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00071",
+      "true_utr": "UTR640660526976",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000127": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00035",
+      "true_utr": "UTR281781133919",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000128": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00015",
+      "true_utr": "UTR540729767635",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000129": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00012",
+      "true_utr": "UTR972833605035",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000130": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00090",
+      "true_utr": "UTR563124746696",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000131": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00080",
+      "true_utr": "UTR892342270114",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000132": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00022",
+      "true_utr": "UTR144067338840",
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "LTX000133": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": "LTX000006",
+      "orphan_reason": null
+    },
+    "LTX000134": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": "LTX000103",
+      "orphan_reason": null
+    },
+    "LTX000135": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": "LTX000019",
+      "orphan_reason": null
+    },
+    "LTX000136": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": "LTX000050",
+      "orphan_reason": null
+    },
+    "LTX000137": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_utr": null,
+      "duplicate_of": "LTX000024",
+      "orphan_reason": null
+    }
+  },
+  "bank_truth": {
+    "BNK000001": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00001",
+      "true_ledger_txn_ids": [
+        "LTX000060"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000002": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00002",
+      "true_ledger_txn_ids": [
+        "LTX000075"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000003": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00003",
+      "true_ledger_txn_ids": [
+        "LTX000096"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000004": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00004",
+      "true_ledger_txn_ids": [
+        "LTX000115"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000005": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00005",
+      "true_ledger_txn_ids": [
+        "LTX000121"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000006": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00006",
+      "true_ledger_txn_ids": [
+        "LTX000076"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000007": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00007",
+      "true_ledger_txn_ids": [
+        "LTX000006"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000008": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00008",
+      "true_ledger_txn_ids": [
+        "LTX000045"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000009": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00009",
+      "true_ledger_txn_ids": [
+        "LTX000024"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000010": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00010",
+      "true_ledger_txn_ids": [
+        "LTX000073"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000011": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00011",
+      "true_ledger_txn_ids": [
+        "LTX000037"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000012": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00012",
+      "true_ledger_txn_ids": [
+        "LTX000129"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000013": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00013",
+      "true_ledger_txn_ids": [
+        "LTX000019"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000014": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00014",
+      "true_ledger_txn_ids": [
+        "LTX000059"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000015": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00015",
+      "true_ledger_txn_ids": [
+        "LTX000128"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000016": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00016",
+      "true_ledger_txn_ids": [
+        "LTX000011"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000017": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00017",
+      "true_ledger_txn_ids": [
+        "LTX000001"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000018": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00018",
+      "true_ledger_txn_ids": [
+        "LTX000061"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000019": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00019",
+      "true_ledger_txn_ids": [
+        "LTX000057"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000020": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00020",
+      "true_ledger_txn_ids": [
+        "LTX000009"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000021": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00021",
+      "true_ledger_txn_ids": [
+        "LTX000050"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000022": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00022",
+      "true_ledger_txn_ids": [
+        "LTX000132"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000023": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00023",
+      "true_ledger_txn_ids": [
+        "LTX000111"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000024": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00024",
+      "true_ledger_txn_ids": [
+        "LTX000008"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000025": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00025",
+      "true_ledger_txn_ids": [
+        "LTX000109"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000026": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00026",
+      "true_ledger_txn_ids": [
+        "LTX000044"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000027": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00027",
+      "true_ledger_txn_ids": [
+        "LTX000026"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000028": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00028",
+      "true_ledger_txn_ids": [
+        "LTX000030"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000029": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00029",
+      "true_ledger_txn_ids": [
+        "LTX000032"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000030": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00030",
+      "true_ledger_txn_ids": [
+        "LTX000054"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000031": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00031",
+      "true_ledger_txn_ids": [
+        "LTX000029"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000032": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00032",
+      "true_ledger_txn_ids": [
+        "LTX000028"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000033": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00033",
+      "true_ledger_txn_ids": [
+        "LTX000083"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000034": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00034",
+      "true_ledger_txn_ids": [
+        "LTX000034"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000035": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00035",
+      "true_ledger_txn_ids": [
+        "LTX000127"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000036": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00036",
+      "true_ledger_txn_ids": [
+        "LTX000094"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000037": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00037",
+      "true_ledger_txn_ids": [
+        "LTX000103"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000038": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00038",
+      "true_ledger_txn_ids": [
+        "LTX000033"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000039": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00039",
+      "true_ledger_txn_ids": [
+        "LTX000004"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000040": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00040",
+      "true_ledger_txn_ids": [
+        "LTX000036"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000041": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00041",
+      "true_ledger_txn_ids": [
+        "LTX000020"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000042": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00042",
+      "true_ledger_txn_ids": [
+        "LTX000038"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000043": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00043",
+      "true_ledger_txn_ids": [
+        "LTX000105"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000044": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00044",
+      "true_ledger_txn_ids": [
+        "LTX000023"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000045": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00045",
+      "true_ledger_txn_ids": [
+        "LTX000056"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000046": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00046",
+      "true_ledger_txn_ids": [
+        "LTX000035"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000047": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00047",
+      "true_ledger_txn_ids": [
+        "LTX000064"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000048": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00048",
+      "true_ledger_txn_ids": [
+        "LTX000017"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000049": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00049",
+      "true_ledger_txn_ids": [
+        "LTX000117"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000050": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00050",
+      "true_ledger_txn_ids": [
+        "LTX000012"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000051": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00051",
+      "true_ledger_txn_ids": [
+        "LTX000118"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000052": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00052",
+      "true_ledger_txn_ids": [
+        "LTX000078"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000053": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00053",
+      "true_ledger_txn_ids": [
+        "LTX000095"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000054": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00054",
+      "true_ledger_txn_ids": [
+        "LTX000021"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000055": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00055",
+      "true_ledger_txn_ids": [
+        "LTX000072"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000056": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00056",
+      "true_ledger_txn_ids": [
+        "LTX000046"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000057": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00057",
+      "true_ledger_txn_ids": [
+        "LTX000063"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000058": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00058",
+      "true_ledger_txn_ids": [
+        "LTX000051"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000059": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00059",
+      "true_ledger_txn_ids": [
+        "LTX000025"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000060": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00060",
+      "true_ledger_txn_ids": [
+        "LTX000122"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000061": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00061",
+      "true_ledger_txn_ids": [
+        "LTX000101"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000062": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00062",
+      "true_ledger_txn_ids": [
+        "LTX000119"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000063": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00063",
+      "true_ledger_txn_ids": [
+        "LTX000053"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000064": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00064",
+      "true_ledger_txn_ids": [
+        "LTX000010"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000065": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00065",
+      "true_ledger_txn_ids": [
+        "LTX000112"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000066": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00066",
+      "true_ledger_txn_ids": [
+        "LTX000110"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000067": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00067",
+      "true_ledger_txn_ids": [
+        "LTX000080"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000068": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00068",
+      "true_ledger_txn_ids": [
+        "LTX000049"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000069": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00069",
+      "true_ledger_txn_ids": [
+        "LTX000092"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000070": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00070",
+      "true_ledger_txn_ids": [
+        "LTX000077"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000071": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00071",
+      "true_ledger_txn_ids": [
+        "LTX000126"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000072": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00072",
+      "true_ledger_txn_ids": [
+        "LTX000018"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000073": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00073",
+      "true_ledger_txn_ids": [
+        "LTX000082"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000074": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00074",
+      "true_ledger_txn_ids": [
+        "LTX000007"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000075": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00075",
+      "true_ledger_txn_ids": [
+        "LTX000088"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000076": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00076",
+      "true_ledger_txn_ids": [
+        "LTX000013"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000077": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00077",
+      "true_ledger_txn_ids": [
+        "LTX000055"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000078": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00078",
+      "true_ledger_txn_ids": [
+        "LTX000071"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000079": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00079",
+      "true_ledger_txn_ids": [
+        "LTX000066"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000080": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00080",
+      "true_ledger_txn_ids": [
+        "LTX000131"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000081": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00081",
+      "true_ledger_txn_ids": [
+        "LTX000062"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000082": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00082",
+      "true_ledger_txn_ids": [
+        "LTX000041"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000083": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00083",
+      "true_ledger_txn_ids": [
+        "LTX000085",
+        "LTX000087",
+        "LTX000069"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000084": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00084",
+      "true_ledger_txn_ids": [
+        "LTX000068",
+        "LTX000081",
+        "LTX000070"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000085": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00085",
+      "true_ledger_txn_ids": [
+        "LTX000108",
+        "LTX000106",
+        "LTX000090",
+        "LTX000107",
+        "LTX000104"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000086": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00086",
+      "true_ledger_txn_ids": [
+        "LTX000091",
+        "LTX000100",
+        "LTX000098",
+        "LTX000102"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000087": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00087",
+      "true_ledger_txn_ids": [
+        "LTX000015",
+        "LTX000016",
+        "LTX000002",
+        "LTX000003"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000088": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00088",
+      "true_ledger_txn_ids": [
+        "LTX000039",
+        "LTX000031",
+        "LTX000040"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000089": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00089",
+      "true_ledger_txn_ids": [
+        "LTX000048",
+        "LTX000065"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000090": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00090",
+      "true_ledger_txn_ids": [
+        "LTX000130",
+        "LTX000113"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000091": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00091",
+      "true_ledger_txn_ids": [
+        "LTX000086"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000092": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00092",
+      "true_ledger_txn_ids": [
+        "LTX000089"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000093": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00093",
+      "true_ledger_txn_ids": [
+        "LTX000124"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000094": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00094",
+      "true_ledger_txn_ids": [
+        "LTX000093"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000095": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00095",
+      "true_ledger_txn_ids": [
+        "LTX000084"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000096": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00096",
+      "true_ledger_txn_ids": [
+        "LTX000120"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000097": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00097",
+      "true_ledger_txn_ids": [
+        "LTX000067"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000098": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00098",
+      "true_ledger_txn_ids": [
+        "LTX000014"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000099": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00099",
+      "true_ledger_txn_ids": [
+        "LTX000058"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000100": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00100",
+      "true_ledger_txn_ids": [
+        "LTX000027"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000101": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00101",
+      "true_ledger_txn_ids": [
+        "LTX000052"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000102": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00102",
+      "true_ledger_txn_ids": [
+        "LTX000042"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000103": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00103",
+      "true_ledger_txn_ids": [
+        "LTX000116"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000104": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00104",
+      "true_ledger_txn_ids": [
+        "LTX000005"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000105": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00105",
+      "true_ledger_txn_ids": [
+        "LTX000125"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000106": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00106",
+      "true_ledger_txn_ids": [
+        "LTX000022"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000107": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00107",
+      "true_ledger_txn_ids": [
+        "LTX000123"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000108": {
+      "true_label": "MATCHED",
+      "true_group_id": "grp_00108",
+      "true_ledger_txn_ids": [
+        "LTX000047"
+      ],
+      "duplicate_of": null,
+      "orphan_reason": null
+    },
+    "BNK000109": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_ledger_txn_ids": [],
+      "duplicate_of": null,
+      "orphan_reason": "prior_period_adjustment"
+    },
+    "BNK000110": {
+      "true_label": "ORPHAN",
+      "true_group_id": null,
+      "true_ledger_txn_ids": [],
+      "duplicate_of": null,
+      "orphan_reason": "unrelated_interest_credit"
+    },
+    "BNK000111": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_ledger_txn_ids": [],
+      "duplicate_of": "BNK000019",
+      "orphan_reason": null
+    },
+    "BNK000112": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_ledger_txn_ids": [],
+      "duplicate_of": "BNK000076",
+      "orphan_reason": null
+    },
+    "BNK000113": {
+      "true_label": "DUPLICATE",
+      "true_group_id": null,
+      "true_ledger_txn_ids": [],
+      "duplicate_of": "BNK000025",
+      "orphan_reason": null
+    }
+  },
+  "match_groups": {
+    "grp_00001": {
+      "utr": "UTR406531716032",
+      "bank_row_id": "BNK000001",
+      "ledger_txn_ids": [
+        "LTX000060"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00002": {
+      "utr": "UTR194481744306",
+      "bank_row_id": "BNK000002",
+      "ledger_txn_ids": [
+        "LTX000075"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00003": {
+      "utr": "UTR667749016328",
+      "bank_row_id": "BNK000003",
+      "ledger_txn_ids": [
+        "LTX000096"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00004": {
+      "utr": "UTR272442708696",
+      "bank_row_id": "BNK000004",
+      "ledger_txn_ids": [
+        "LTX000115"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00005": {
+      "utr": "UTR503386595431",
+      "bank_row_id": "BNK000005",
+      "ledger_txn_ids": [
+        "LTX000121"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00006": {
+      "utr": "UTR106583010663",
+      "bank_row_id": "BNK000006",
+      "ledger_txn_ids": [
+        "LTX000076"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00007": {
+      "utr": "UTR670392795762",
+      "bank_row_id": "BNK000007",
+      "ledger_txn_ids": [
+        "LTX000006"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00008": {
+      "utr": "UTR529755286264",
+      "bank_row_id": "BNK000008",
+      "ledger_txn_ids": [
+        "LTX000045"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00009": {
+      "utr": "UTR748626352046",
+      "bank_row_id": "BNK000009",
+      "ledger_txn_ids": [
+        "LTX000024"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00010": {
+      "utr": "UTR880121294435",
+      "bank_row_id": "BNK000010",
+      "ledger_txn_ids": [
+        "LTX000073"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00011": {
+      "utr": "UTR496079829574",
+      "bank_row_id": "BNK000011",
+      "ledger_txn_ids": [
+        "LTX000037"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00012": {
+      "utr": "UTR972833605035",
+      "bank_row_id": "BNK000012",
+      "ledger_txn_ids": [
+        "LTX000129"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00013": {
+      "utr": "UTR760378147694",
+      "bank_row_id": "BNK000013",
+      "ledger_txn_ids": [
+        "LTX000019"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00014": {
+      "utr": "UTR211482797377",
+      "bank_row_id": "BNK000014",
+      "ledger_txn_ids": [
+        "LTX000059"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00015": {
+      "utr": "UTR540729767635",
+      "bank_row_id": "BNK000015",
+      "ledger_txn_ids": [
+        "LTX000128"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00016": {
+      "utr": "UTR980125281166",
+      "bank_row_id": "BNK000016",
+      "ledger_txn_ids": [
+        "LTX000011"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00017": {
+      "utr": "UTR176337345080",
+      "bank_row_id": "BNK000017",
+      "ledger_txn_ids": [
+        "LTX000001"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00018": {
+      "utr": "UTR932231500497",
+      "bank_row_id": "BNK000018",
+      "ledger_txn_ids": [
+        "LTX000061"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00019": {
+      "utr": "UTR435432107176",
+      "bank_row_id": "BNK000019",
+      "ledger_txn_ids": [
+        "LTX000057"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00020": {
+      "utr": "UTR707775065800",
+      "bank_row_id": "BNK000020",
+      "ledger_txn_ids": [
+        "LTX000009"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00021": {
+      "utr": "UTR878910893250",
+      "bank_row_id": "BNK000021",
+      "ledger_txn_ids": [
+        "LTX000050"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00022": {
+      "utr": "UTR144067338840",
+      "bank_row_id": "BNK000022",
+      "ledger_txn_ids": [
+        "LTX000132"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00023": {
+      "utr": "UTR872312774162",
+      "bank_row_id": "BNK000023",
+      "ledger_txn_ids": [
+        "LTX000111"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00024": {
+      "utr": "UTR709558659427",
+      "bank_row_id": "BNK000024",
+      "ledger_txn_ids": [
+        "LTX000008"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00025": {
+      "utr": "UTR906071393245",
+      "bank_row_id": "BNK000025",
+      "ledger_txn_ids": [
+        "LTX000109"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00026": {
+      "utr": "UTR867503016668",
+      "bank_row_id": "BNK000026",
+      "ledger_txn_ids": [
+        "LTX000044"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00027": {
+      "utr": "UTR369049286007",
+      "bank_row_id": "BNK000027",
+      "ledger_txn_ids": [
+        "LTX000026"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00028": {
+      "utr": "UTR347342545679",
+      "bank_row_id": "BNK000028",
+      "ledger_txn_ids": [
+        "LTX000030"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00029": {
+      "utr": "UTR176330432112",
+      "bank_row_id": "BNK000029",
+      "ledger_txn_ids": [
+        "LTX000032"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00030": {
+      "utr": "UTR826688445378",
+      "bank_row_id": "BNK000030",
+      "ledger_txn_ids": [
+        "LTX000054"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00031": {
+      "utr": "UTR467147756018",
+      "bank_row_id": "BNK000031",
+      "ledger_txn_ids": [
+        "LTX000029"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00032": {
+      "utr": "UTR997822033536",
+      "bank_row_id": "BNK000032",
+      "ledger_txn_ids": [
+        "LTX000028"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00033": {
+      "utr": "UTR453132183629",
+      "bank_row_id": "BNK000033",
+      "ledger_txn_ids": [
+        "LTX000083"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00034": {
+      "utr": "UTR220930221981",
+      "bank_row_id": "BNK000034",
+      "ledger_txn_ids": [
+        "LTX000034"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00035": {
+      "utr": "UTR281781133919",
+      "bank_row_id": "BNK000035",
+      "ledger_txn_ids": [
+        "LTX000127"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00036": {
+      "utr": "UTR671086238456",
+      "bank_row_id": "BNK000036",
+      "ledger_txn_ids": [
+        "LTX000094"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00037": {
+      "utr": "UTR963288345560",
+      "bank_row_id": "BNK000037",
+      "ledger_txn_ids": [
+        "LTX000103"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00038": {
+      "utr": "UTR356086787600",
+      "bank_row_id": "BNK000038",
+      "ledger_txn_ids": [
+        "LTX000033"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00039": {
+      "utr": "UTR392808457465",
+      "bank_row_id": "BNK000039",
+      "ledger_txn_ids": [
+        "LTX000004"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00040": {
+      "utr": "UTR768086154476",
+      "bank_row_id": "BNK000040",
+      "ledger_txn_ids": [
+        "LTX000036"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00041": {
+      "utr": "UTR369444962363",
+      "bank_row_id": "BNK000041",
+      "ledger_txn_ids": [
+        "LTX000020"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00042": {
+      "utr": "UTR239897407675",
+      "bank_row_id": "BNK000042",
+      "ledger_txn_ids": [
+        "LTX000038"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00043": {
+      "utr": "UTR605340454972",
+      "bank_row_id": "BNK000043",
+      "ledger_txn_ids": [
+        "LTX000105"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00044": {
+      "utr": "UTR494547632725",
+      "bank_row_id": "BNK000044",
+      "ledger_txn_ids": [
+        "LTX000023"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00045": {
+      "utr": "UTR707137729281",
+      "bank_row_id": "BNK000045",
+      "ledger_txn_ids": [
+        "LTX000056"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00046": {
+      "utr": "UTR808830852606",
+      "bank_row_id": "BNK000046",
+      "ledger_txn_ids": [
+        "LTX000035"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00047": {
+      "utr": "UTR191704741583",
+      "bank_row_id": "BNK000047",
+      "ledger_txn_ids": [
+        "LTX000064"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00048": {
+      "utr": "UTR561458857870",
+      "bank_row_id": "BNK000048",
+      "ledger_txn_ids": [
+        "LTX000017"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00049": {
+      "utr": "UTR963797070096",
+      "bank_row_id": "BNK000049",
+      "ledger_txn_ids": [
+        "LTX000117"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00050": {
+      "utr": "UTR321459950354",
+      "bank_row_id": "BNK000050",
+      "ledger_txn_ids": [
+        "LTX000012"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00051": {
+      "utr": "UTR564479021131",
+      "bank_row_id": "BNK000051",
+      "ledger_txn_ids": [
+        "LTX000118"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00052": {
+      "utr": "UTR200440331424",
+      "bank_row_id": "BNK000052",
+      "ledger_txn_ids": [
+        "LTX000078"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00053": {
+      "utr": "UTR728370753048",
+      "bank_row_id": "BNK000053",
+      "ledger_txn_ids": [
+        "LTX000095"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00054": {
+      "utr": "UTR454713199460",
+      "bank_row_id": "BNK000054",
+      "ledger_txn_ids": [
+        "LTX000021"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00055": {
+      "utr": "UTR200863333898",
+      "bank_row_id": "BNK000055",
+      "ledger_txn_ids": [
+        "LTX000072"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00056": {
+      "utr": "UTR557350620231",
+      "bank_row_id": "BNK000056",
+      "ledger_txn_ids": [
+        "LTX000046"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00057": {
+      "utr": "UTR488194318131",
+      "bank_row_id": "BNK000057",
+      "ledger_txn_ids": [
+        "LTX000063"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00058": {
+      "utr": "UTR334313689073",
+      "bank_row_id": "BNK000058",
+      "ledger_txn_ids": [
+        "LTX000051"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00059": {
+      "utr": "UTR531877060495",
+      "bank_row_id": "BNK000059",
+      "ledger_txn_ids": [
+        "LTX000025"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00060": {
+      "utr": "UTR397662167849",
+      "bank_row_id": "BNK000060",
+      "ledger_txn_ids": [
+        "LTX000122"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00061": {
+      "utr": "UTR514692644715",
+      "bank_row_id": "BNK000061",
+      "ledger_txn_ids": [
+        "LTX000101"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00062": {
+      "utr": "UTR142636618004",
+      "bank_row_id": "BNK000062",
+      "ledger_txn_ids": [
+        "LTX000119"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00063": {
+      "utr": "UTR108333803639",
+      "bank_row_id": "BNK000063",
+      "ledger_txn_ids": [
+        "LTX000053"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00064": {
+      "utr": "UTR199566520805",
+      "bank_row_id": "BNK000064",
+      "ledger_txn_ids": [
+        "LTX000010"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00065": {
+      "utr": "UTR612290845387",
+      "bank_row_id": "BNK000065",
+      "ledger_txn_ids": [
+        "LTX000112"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00066": {
+      "utr": "UTR104267253620",
+      "bank_row_id": "BNK000066",
+      "ledger_txn_ids": [
+        "LTX000110"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00067": {
+      "utr": "UTR246469137494",
+      "bank_row_id": "BNK000067",
+      "ledger_txn_ids": [
+        "LTX000080"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00068": {
+      "utr": "UTR328837135378",
+      "bank_row_id": "BNK000068",
+      "ledger_txn_ids": [
+        "LTX000049"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00069": {
+      "utr": "UTR643082008899",
+      "bank_row_id": "BNK000069",
+      "ledger_txn_ids": [
+        "LTX000092"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00070": {
+      "utr": "UTR831843411238",
+      "bank_row_id": "BNK000070",
+      "ledger_txn_ids": [
+        "LTX000077"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00071": {
+      "utr": "UTR640660526976",
+      "bank_row_id": "BNK000071",
+      "ledger_txn_ids": [
+        "LTX000126"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00072": {
+      "utr": "UTR385872070927",
+      "bank_row_id": "BNK000072",
+      "ledger_txn_ids": [
+        "LTX000018"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00073": {
+      "utr": "UTR411830789866",
+      "bank_row_id": "BNK000073",
+      "ledger_txn_ids": [
+        "LTX000082"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00074": {
+      "utr": "UTR752664988765",
+      "bank_row_id": "BNK000074",
+      "ledger_txn_ids": [
+        "LTX000007"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00075": {
+      "utr": "UTR385437854016",
+      "bank_row_id": "BNK000075",
+      "ledger_txn_ids": [
+        "LTX000088"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00076": {
+      "utr": "UTR213423707571",
+      "bank_row_id": "BNK000076",
+      "ledger_txn_ids": [
+        "LTX000013"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00077": {
+      "utr": "UTR255649542797",
+      "bank_row_id": "BNK000077",
+      "ledger_txn_ids": [
+        "LTX000055"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00078": {
+      "utr": "UTR103606844260",
+      "bank_row_id": "BNK000078",
+      "ledger_txn_ids": [
+        "LTX000071"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00079": {
+      "utr": "UTR626174950720",
+      "bank_row_id": "BNK000079",
+      "ledger_txn_ids": [
+        "LTX000066"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00080": {
+      "utr": "UTR892342270114",
+      "bank_row_id": "BNK000080",
+      "ledger_txn_ids": [
+        "LTX000131"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00081": {
+      "utr": "UTR345868472350",
+      "bank_row_id": "BNK000081",
+      "ledger_txn_ids": [
+        "LTX000062"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00082": {
+      "utr": "UTR365279673882",
+      "bank_row_id": "BNK000082",
+      "ledger_txn_ids": [
+        "LTX000041"
+      ],
+      "match_type": "CLEAN_1_1"
+    },
+    "grp_00083": {
+      "utr": "UTR116344489522",
+      "bank_row_id": "BNK000083",
+      "ledger_txn_ids": [
+        "LTX000085",
+        "LTX000087",
+        "LTX000069"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00084": {
+      "utr": "UTR308152485718",
+      "bank_row_id": "BNK000084",
+      "ledger_txn_ids": [
+        "LTX000068",
+        "LTX000081",
+        "LTX000070"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00085": {
+      "utr": "UTR328298055905",
+      "bank_row_id": "BNK000085",
+      "ledger_txn_ids": [
+        "LTX000108",
+        "LTX000106",
+        "LTX000090",
+        "LTX000107",
+        "LTX000104"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00086": {
+      "utr": "UTR598186756080",
+      "bank_row_id": "BNK000086",
+      "ledger_txn_ids": [
+        "LTX000091",
+        "LTX000100",
+        "LTX000098",
+        "LTX000102"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00087": {
+      "utr": "UTR709858687239",
+      "bank_row_id": "BNK000087",
+      "ledger_txn_ids": [
+        "LTX000015",
+        "LTX000016",
+        "LTX000002",
+        "LTX000003"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00088": {
+      "utr": "UTR610244015787",
+      "bank_row_id": "BNK000088",
+      "ledger_txn_ids": [
+        "LTX000039",
+        "LTX000031",
+        "LTX000040"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00089": {
+      "utr": "UTR985075368393",
+      "bank_row_id": "BNK000089",
+      "ledger_txn_ids": [
+        "LTX000048",
+        "LTX000065"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00090": {
+      "utr": "UTR563124746696",
+      "bank_row_id": "BNK000090",
+      "ledger_txn_ids": [
+        "LTX000130",
+        "LTX000113"
+      ],
+      "match_type": "BATCH_NET"
+    },
+    "grp_00091": {
+      "utr": "UTR568207060341",
+      "bank_row_id": "BNK000091",
+      "ledger_txn_ids": [
+        "LTX000086"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00092": {
+      "utr": "UTR714323438388",
+      "bank_row_id": "BNK000092",
+      "ledger_txn_ids": [
+        "LTX000089"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00093": {
+      "utr": "UTR279587793609",
+      "bank_row_id": "BNK000093",
+      "ledger_txn_ids": [
+        "LTX000124"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00094": {
+      "utr": "UTR760145414106",
+      "bank_row_id": "BNK000094",
+      "ledger_txn_ids": [
+        "LTX000093"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00095": {
+      "utr": "UTR767544769467",
+      "bank_row_id": "BNK000095",
+      "ledger_txn_ids": [
+        "LTX000084"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00096": {
+      "utr": "UTR913575961790",
+      "bank_row_id": "BNK000096",
+      "ledger_txn_ids": [
+        "LTX000120"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00097": {
+      "utr": "UTR283957630373",
+      "bank_row_id": "BNK000097",
+      "ledger_txn_ids": [
+        "LTX000067"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00098": {
+      "utr": "UTR747381280321",
+      "bank_row_id": "BNK000098",
+      "ledger_txn_ids": [
+        "LTX000014"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00099": {
+      "utr": "UTR647867016008",
+      "bank_row_id": "BNK000099",
+      "ledger_txn_ids": [
+        "LTX000058"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00100": {
+      "utr": "UTR520876230963",
+      "bank_row_id": "BNK000100",
+      "ledger_txn_ids": [
+        "LTX000027"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00101": {
+      "utr": "UTR217997823723",
+      "bank_row_id": "BNK000101",
+      "ledger_txn_ids": [
+        "LTX000052"
+      ],
+      "match_type": "FEE_DRIFT_1_1"
+    },
+    "grp_00102": {
+      "utr": "UTR959408552670",
+      "bank_row_id": "BNK000102",
+      "ledger_txn_ids": [
+        "LTX000042"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00103": {
+      "utr": "UTR778154106700",
+      "bank_row_id": "BNK000103",
+      "ledger_txn_ids": [
+        "LTX000116"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00104": {
+      "utr": "UTR267189521383",
+      "bank_row_id": "BNK000104",
+      "ledger_txn_ids": [
+        "LTX000005"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00105": {
+      "utr": "UTR333495855869",
+      "bank_row_id": "BNK000105",
+      "ledger_txn_ids": [
+        "LTX000125"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00106": {
+      "utr": "UTR687267280677",
+      "bank_row_id": "BNK000106",
+      "ledger_txn_ids": [
+        "LTX000022"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00107": {
+      "utr": "UTR327192661494",
+      "bank_row_id": "BNK000107",
+      "ledger_txn_ids": [
+        "LTX000123"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    },
+    "grp_00108": {
+      "utr": "UTR911477668209",
+      "bank_row_id": "BNK000108",
+      "ledger_txn_ids": [
+        "LTX000047"
+      ],
+      "match_type": "TIMING_NEAR_MISS"
+    }
+  },
+  "planted_traps": [
+    {
+      "trap_type": "AMOUNT_COLLISION_NO_RELATION",
+      "ledger_txn_ids": [
+        "LTX000097"
+      ],
+      "bank_row_ids": [
+        "BNK000109"
+      ],
+      "note": "orphan ledger txn and orphan bank credit land within Rs.3 of each other; different merchants, must not be matched"
+    },
+    {
+      "trap_type": "AMBIGUOUS_SUBSET_SUM",
+      "ledger_txn_ids": [
+        "LTX000085",
+        "LTX000087",
+        "LTX000069",
+        "LTX000068",
+        "LTX000081",
+        "LTX000070"
+      ],
+      "bank_row_ids": [
+        "BNK000083",
+        "BNK000084"
+      ],
+      "note": "two disjoint subsets both sum within tolerance of the other batch's credited_amount"
+    }
+  ],
+  "summary_counts": {
+    "total_ledger_rows": 137,
+    "total_bank_rows": 113,
+    "clean_1_1": 82,
+    "batch_net_members": 26,
+    "batch_net_groups": 8,
+    "fee_drift_1_1": 11,
+    "timing_near_miss": 7,
+    "orphan_ledger": 6,
+    "orphan_bank": 2,
+    "duplicate_ledger": 5,
+    "duplicate_bank": 3,
+    "traps": 2
+  }
+}

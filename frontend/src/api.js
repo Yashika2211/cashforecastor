@@ -17,3 +17,8 @@ export const fetchHistory        = (mid, days = 60)      => get(`/history/${mid}
 export const fetchBacktestMetrics = ()                   => get('/backtest-metrics')
 export const fetchBacktestFolds  = ()                    => get('/backtest-folds')
 export const fetchExceptions     = ()                    => get('/exceptions')
+
+export const fetchReconciliationSummary    = ()          => get('/reconciliation-summary')
+export const fetchReconciliationMatches    = ()          => get('/reconciliation-matches')
+export const fetchReconciliationExceptions = ()          => get('/reconciliation-exceptions')
+export const fetchReconciliationAccuracy   = ()          => get('/reconciliation-accuracy')

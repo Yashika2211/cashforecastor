@@ -1,0 +1,80 @@
+{
+  "precision": 1.0,
+  "precision_counts": {
+    "TP": 108,
+    "FP_raw": 0,
+    "WA": 0
+  },
+  "recall": 0.8571,
+  "recall_counts": {
+    "TP": 108,
+    "FN_raw": 18,
+    "WA": 0
+  },
+  "match_rate": 0.7883,
+  "match_rate_n": [
+    108,
+    137
+  ],
+  "false_match_rate_ledger": 0.0,
+  "false_match_rate_ledger_counts": [
+    0,
+    11
+  ],
+  "false_match_rate_bank": 0.0,
+  "false_match_rate_bank_counts": [
+    0,
+    5
+  ],
+  "false_match_rate_pooled": 0.0,
+  "false_match_rate_pooled_counts": [
+    0,
+    16
+  ],
+  "wrong_attribution_rate": 0.0,
+  "wrong_attribution_counts": [
+    0,
+    126
+  ],
+  "duplicate_precision": 1.0,
+  "duplicate_precision_n": [
+    8,
+    8
+  ],
+  "duplicate_recall": 1.0,
+  "duplicate_recall_n": [
+    8,
+    8
+  ],
+  "trap_recall": 1.0,
+  "trap_counts": [
+    2,
+    2
+  ],
+  "reason_code_accuracy": 1.0,
+  "reason_code_accuracy_n": [
+    16,
+    16
+  ],
+  "confusion": {
+    "ORPHAN_LEDGER_TXN": {
+      "ORPHAN_LEDGER_TXN": 6
+    },
+    "DUPLICATE_SUSPECTED": {
+      "DUPLICATE_SUSPECTED": 8
+    },
+    "ORPHAN_BANK_CREDIT": {
+      "ORPHAN_BANK_CREDIT": 2
+    }
+  },
+  "records_per_second": 90011.72312681988,
+  "warning": null,
+  "bank_precision_recall": {
+    "precision": 1.0,
+    "recall": 0.8704,
+    "TP": 94,
+    "FP_raw": 0,
+    "FN_raw": 14,
+    "WA": 0
+  }
+}
