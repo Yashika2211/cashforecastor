@@ -18,7 +18,7 @@ const COLUMNS = [
     cellStyle: f => ({ color: toneForScore(f.confidence_score, { good: 0.7, warn: 0.5 }), fontFamily: 'var(--font-mono)', fontVariantNumeric: 'tabular-nums' }),
     render: f => f.confidence_score != null ? f.confidence_score.toFixed(2) : '—' },
   { key: 'trigger', header: 'trigger',
-    cellStyle: () => ({ color: '#9AA0A8', fontSize: '11px', fontFamily: 'var(--font-ui)' }),
+    cellStyle: () => ({ color: 'var(--muted)', fontSize: '11px', fontFamily: 'var(--font-ui)' }),
     render: f => shortReason(f.reason) },
 ]
 

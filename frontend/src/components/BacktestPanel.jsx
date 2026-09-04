@@ -1,4 +1,5 @@
 import FoldReliabilityStrip from './FoldReliabilityStrip'
+import CoverageComparisonChart from './CoverageComparisonChart'
 import { fmtPct, fmtInt, toneForScore } from '../format'
 
 const LABELS = {
@@ -17,6 +18,8 @@ export default function BacktestPanel({ metrics, folds, foldsLoading, foldsError
       </div>
 
       <FoldReliabilityStrip folds={folds} loading={foldsLoading} error={foldsError} />
+
+      {!loading && !error && <CoverageComparisonChart metrics={metrics} />}
 
       {loading && <div style={{ color: 'var(--muted)', fontSize: '12px' }}>loading…</div>}
       {error   && <div style={{ color: 'var(--bad)',   fontSize: '12px' }}>error: {error}</div>}

@@ -21,7 +21,7 @@ const Tip = ({ active, payload }) => {
   const d = payload[0]?.payload || {}
   return (
     <div style={{
-      background: '#1e2228',
+      background: 'var(--overlay)',
       border: '1px solid var(--border)',
       borderRadius: '3px',
       padding: '8px 12px',
@@ -58,7 +58,7 @@ export default function FanChart({ history, forecast, forecastOrigin }) {
 
       <ResponsiveContainer width="100%" height={280}>
         <ComposedChart data={data} margin={{ top: 2, right: 16, bottom: 0, left: 8 }}>
-          <CartesianGrid strokeDasharray="2 4" stroke="#1e2228" vertical={false} />
+          <CartesianGrid strokeDasharray="2 4" stroke="var(--grid)" vertical={false} />
           <XAxis dataKey="date" ticks={ticks} tickFormatter={fmtDate} tick={tickStyle} axisLine={{ stroke: 'var(--border)' }} tickLine={false} />
           <YAxis tickFormatter={fmt} tick={tickStyle} axisLine={false} tickLine={false} width={60} />
           <Tooltip content={<Tip />} />

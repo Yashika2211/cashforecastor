@@ -1,13 +1,5 @@
 import RecordTable from './RecordTable'
-import { toneForScore } from '../format'
-
-function ruleColor(rule) {
-  if (!rule) return 'var(--muted)'
-  if (rule === 'exact_1to1' || rule === 'fee_adjusted_1to1') return 'var(--good)'
-  if (rule.startsWith('timing_near_miss')) return 'var(--warn)'
-  if (rule.startsWith('batch_subset_sum')) return 'var(--accent)'
-  return 'var(--muted)'
-}
+import { toneForScore, toneForRule } from '../format'
 
 const COLUMNS = [
   { key: 'ledger', header: 'ledger txns', width: '1.4fr',
@@ -20,7 +12,7 @@ const COLUMNS = [
   { key: 'utr', header: 'utr', width: '1.1fr',
     render: m => <span style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>{m.utr}</span> },
   { key: 'rule', header: 'rule', width: '1.1fr',
-    render: m => <span style={{ color: ruleColor(m.rule), fontFamily: 'var(--font-mono)', fontSize: '10px' }}>{m.rule}</span> },
+    render: m => <span style={{ color: toneForRule(m.rule), fontFamily: 'var(--font-mono)', fontSize: '10px' }}>{m.rule}</span> },
   { key: 'delta', header: 'Δ', width: '70px', align: 'right',
     cellStyle: m => ({ fontFamily: 'var(--font-mono)', fontVariantNumeric: 'tabular-nums', color: m.delta != null && Math.abs(m.delta) > 0.01 ? 'var(--warn)' : 'var(--muted)' }),
     render: m => m.delta != null ? m.delta.toFixed(2) : '—' },

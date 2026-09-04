@@ -1,19 +1,81 @@
+/* Dark is the default (matches the original "settlement radar" identity).
+   Light overrides apply either from an explicit user choice (data-theme
+   attribute, set by ThemeToggle + theme.js) or, absent one, from the OS
+   preference via the media query below. Every color here was checked with
+   the dataviz skill's validator: light-mode text/status colors all clear
+   WCAG 4.5:1 against both --bg and --surface; --accent-dim/-mid/-accent form
+   a validated single-hue ordinal ramp (monotone lightness, light-end
+   contrast >= 2:1) used by the coverage-by-method chart. */
 :root {
-  --bg:           #0B0D10;
-  --surface:      #14171B;
-  --surface2:     #1A1E24;
-  --border:       #262B31;
-  --text:         #E8EAED;
-  --muted:        #8B929B;
-  --accent:       #4FD1C5;
-  --good:         #3FB950;
-  --warn:         #D4A72C;
-  --bad:          #E5534B;
-  --font-mono:    'IBM Plex Mono', 'Fira Mono', 'Menlo', monospace;
-  --font-ui:      'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+  --bg:            #0B0D10;
+  --surface:       #14171B;
+  --surface2:      #1A1E24;
+  --border:        #262B31;
+  --border-hover:  #363C44;
+  --text:          #E8EAED;
+  --muted:         #8B929B;
+  --accent:        #4FD1C5;
+  --accent-mid:    #3E9089;
+  --accent-dim:    #2E5C58;
+  --good:          #3FB950;
+  --warn:          #D4A72C;
+  --bad:           #E5534B;
+  --overlay:       #1E2228;
+  --grid:          #1B1F25;
+  --error-bg:      #1A0E0E;
+  --error-border:  #5A1A1A;
+  --hover-tint:    rgba(255, 255, 255, 0.045);
+  --font-mono:     'IBM Plex Mono', 'Fira Mono', 'Menlo', monospace;
+  --font-ui:       'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:            #F6F7F8;
+    --surface:       #FFFFFF;
+    --surface2:      #EEF0F2;
+    --border:        #DDE1E6;
+    --border-hover:  #C7CCD3;
+    --text:          #1A1D21;
+    --muted:         #6B7280;
+    --accent:        #0F766E;
+    --accent-mid:    #2F9D93;
+    --accent-dim:    #5AB8AF;
+    --good:          #1A7F37;
+    --warn:          #8A6D1D;
+    --bad:           #C22C2C;
+    --overlay:       #FFFFFF;
+    --grid:          #EEF0F2;
+    --error-bg:      #FDECEC;
+    --error-border:  #F3C6C6;
+    --hover-tint:    rgba(15, 23, 31, 0.035);
+  }
+}
+
+:root[data-theme="light"] {
+  --bg:            #F6F7F8;
+  --surface:       #FFFFFF;
+  --surface2:      #EEF0F2;
+  --border:        #DDE1E6;
+  --border-hover:  #C7CCD3;
+  --text:          #1A1D21;
+  --muted:         #6B7280;
+  --accent:        #0F766E;
+  --accent-mid:    #2F9D93;
+  --accent-dim:    #5AB8AF;
+  --good:          #1A7F37;
+  --warn:          #8A6D1D;
+  --bad:           #C22C2C;
+  --overlay:       #FFFFFF;
+  --grid:          #EEF0F2;
+  --error-bg:      #FDECEC;
+  --error-border:  #F3C6C6;
+  --hover-tint:    rgba(15, 23, 31, 0.035);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { color-scheme: light dark; }
 
 body {
   background: var(--bg);
@@ -22,6 +84,7 @@ body {
   font-size: 13px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
 /* all numbers monospace by default */
@@ -52,7 +115,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 .rt-row--alt { background: var(--surface2); }
-.rt-row:not(.rt-row--head):hover { background-color: rgba(255, 255, 255, 0.045); }
+.rt-row:not(.rt-row--head):hover { background-color: var(--hover-tint); }
 
 /* View tabs (cash / books) */
 .tab-btn {
@@ -72,23 +135,50 @@ body {
 .tab-btn.is-active { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* Inputs */
+.select-wrap { position: relative; display: inline-flex; align-items: center; }
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--muted);
+  transform: translateY(-2px);
+  pointer-events: none;
+}
 .select-input {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 3px;
-  padding: 4px 28px 4px 8px;
+  padding: 4px 26px 4px 8px;
   font-family: var(--font-mono);
   font-size: 12px;
   min-width: 180px;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238B929B'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 8px center;
   outline: none;
   transition: border-color 0.15s ease;
 }
-.select-input:hover:not(:disabled) { border-color: #363c44; }
+.select-input:hover:not(:disabled) { border-color: var(--border-hover); }
 .select-input:focus { border-color: var(--accent); }
 .select-input:disabled { cursor: not-allowed; opacity: 0.6; }
 .select-input:not(:disabled) { cursor: pointer; }
+
+/* Small icon buttons (theme toggle) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.icon-btn:hover { color: var(--text); border-color: var(--border-hover); background: var(--surface2); }

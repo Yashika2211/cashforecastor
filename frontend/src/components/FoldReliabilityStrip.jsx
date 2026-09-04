@@ -47,7 +47,7 @@ export default function FoldReliabilityStrip({ folds, loading, error }) {
               position: 'absolute',
               top: '26px',
               left: '0',
-              background: '#1e2228',
+              background: 'var(--overlay)',
               border: '1px solid var(--border)',
               borderRadius: '3px',
               padding: '8px 10px',

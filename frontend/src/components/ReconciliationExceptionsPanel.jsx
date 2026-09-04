@@ -1,14 +1,5 @@
 import RecordTable from './RecordTable'
-import { toneForScore } from '../format'
-
-const WARN_CODES = new Set(['DUPLICATE_SUSPECTED', 'TIMING_OUT_OF_WINDOW', 'AMOUNT_MISMATCH'])
-const BAD_CODES = new Set(['ORPHAN_LEDGER_TXN', 'ORPHAN_BANK_CREDIT', 'UNRESOLVED_SUBSET_SUM'])
-
-function reasonColor(code) {
-  if (WARN_CODES.has(code)) return 'var(--warn)'
-  if (BAD_CODES.has(code)) return 'var(--bad)'
-  return 'var(--muted)'
-}
+import { toneForScore, toneForReason } from '../format'
 
 const COLUMNS = [
   { key: 'record', header: 'record', width: '1.1fr',
@@ -21,9 +12,9 @@ const COLUMNS = [
   { key: 'merchant', header: 'merchant', width: '0.9fr',
     render: r => <span style={{ color: 'var(--muted)', fontFamily: 'var(--font-mono)', fontSize: '11px' }}>{r.merchant_id || '—'}</span> },
   { key: 'reason', header: 'reason', width: '1.3fr',
-    render: r => <span style={{ color: reasonColor(r.reason_code), fontFamily: 'var(--font-mono)', fontSize: '10px' }}>{r.reason_code}</span> },
+    render: r => <span style={{ color: toneForReason(r.reason_code), fontFamily: 'var(--font-mono)', fontSize: '10px' }}>{r.reason_code}</span> },
   { key: 'detail', header: 'detail', width: '1.6fr',
-    cellStyle: () => ({ color: '#9AA0A8', fontSize: '11px', fontFamily: 'var(--font-ui)' }),
+    cellStyle: () => ({ color: 'var(--muted)', fontSize: '11px', fontFamily: 'var(--font-ui)' }),
     render: r => r.detail || '—' },
   { key: 'delta', header: 'Δ', width: '60px', align: 'right',
     cellStyle: () => ({ fontFamily: 'var(--font-mono)', fontVariantNumeric: 'tabular-nums', color: 'var(--muted)' }),

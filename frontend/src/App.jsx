@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import MerchantSelector from './components/MerchantSelector'
+import ThemeToggle from './components/ThemeToggle'
 import FanChart from './components/FanChart'
 import BacktestPanel from './components/BacktestPanel'
 import ExceptionsPanel from './components/ExceptionsPanel'
@@ -12,6 +13,7 @@ import {
   fetchReconciliationSummary, fetchReconciliationMatches, fetchReconciliationExceptions,
 } from './api'
 import { fmtInt, fmtPct } from './format'
+import { getStoredTheme, getSystemTheme, applyTheme, persistTheme } from './theme'
 
 // Fetch wrappers are stable module-level functions and none of these calls
 // depend on `run`'s identity across renders (every consumer either fires it
@@ -34,6 +36,25 @@ export default function App() {
   const [merchants, setMerchants]           = useState([])
   const [selectedMerchant, setSelectedMerchant] = useState(null)
   const [view, setView] = useState('cash')
+  const [theme, setTheme] = useState(() => getStoredTheme() ?? getSystemTheme())
+
+  function toggleTheme() {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    applyTheme(next)
+    persistTheme(next)
+    setTheme(next)
+  }
+
+  // Track OS-level theme changes for as long as the user hasn't explicitly
+  // overridden the default -- CSS already does this on its own via the
+  // `prefers-color-scheme` media query; this just keeps the toggle button's
+  // icon in sync with it.
+  useEffect(() => {
+    const mq = matchMedia('(prefers-color-scheme: light)')
+    const onChange = () => { if (!getStoredTheme()) setTheme(mq.matches ? 'light' : 'dark') }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   const forecast  = useAsync(fetchForecast)
   const history   = useAsync(fetchHistory)
@@ -120,12 +141,13 @@ export default function App() {
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--good)' }} />
             <span style={{ color: 'var(--muted)', fontSize: '10px', fontFamily: 'var(--font-ui)' }}>model v2 + cqr</span>
           </div>
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
       </div>
 
       {/* Error banner */}
       {forecast.error && (
-        <div style={{ background: '#1a0e0e', borderBottom: '1px solid #5a1a1a', color: 'var(--bad)', padding: '6px 20px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
+        <div style={{ background: 'var(--error-bg)', borderBottom: '1px solid var(--error-border)', color: 'var(--bad)', padding: '6px 20px', fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
           forecast error: {forecast.error}
         </div>
       )}
